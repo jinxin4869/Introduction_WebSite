@@ -1,0 +1,1033 @@
+/* ===== CSS RESET & BASE ===== */
+/* 全要素のマージン・パディングリセット、ボックスサイジング統一 */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* HTML要素の基本設定 */
+html {
+    scroll-behavior: smooth; /* スムーススクロールを有効化 */
+    font-size: 16px;        /* ベースフォントサイズ */
+}
+
+/* Body要素の基本スタイル */
+body {
+    font-family: 'Noto Sans JP', sans-serif; /* 日本語対応フォント */
+    line-height: 1.6;                        /* 読みやすい行間 */
+    color: #5a4037;                          /* メインテキストカラー（ダークブラウン） */
+    background-color: #fdf8f5;               /* 背景色（ベージュホワイト） */
+    overflow-x: hidden;                      /* 横スクロールを防止 */
+}
+
+/* ===== CSS VARIABLES（カスタムプロパティ） ===== */
+/* サイト全体で使用する色、サイズ、間隔などの変数定義 */
+:root {
+    /* ===== Colors - 柔らかい暖色パレット ===== */
+    --primary-color: #ff8a65;          /* メインカラー：コーラルオレンジ */
+    --primary-light: #ffab91;          /* ライトバージョン：ライトコーラル */
+    --primary-dark: #f4511e;           /* ダークバージョン：ダークオレンジ */
+    --secondary-color: #ffcc80;        /* セカンダリカラー：ソフトオレンジ */
+    --accent-color: #ffb74d;           /* アクセントカラー：アンバー */
+    --text-primary: #5a4037;           /* プライマリテキスト：ダークブラウン */
+    --text-secondary: #8d6e63;         /* セカンダリテキスト：ミディアムブラウン */
+    --text-light: #a1887f;             /* ライトテキスト：ライトブラウン */
+    --bg-primary: #fdf8f5;             /* メイン背景色：ベージュホワイト */
+    --bg-secondary: #fff3e0;           /* セカンダリ背景色：ライトピーチ */
+    --bg-accent: #fce4ec;              /* アクセント背景色：ソフトピンク */
+    --white: #ffffff;                  /* 純白 */
+    --shadow-light: rgba(255, 138, 101, 0.1);   /* 軽いシャドウ */
+    --shadow-medium: rgba(255, 138, 101, 0.2);  /* ミディアムシャドウ */
+    --shadow-dark: rgba(90, 64, 55, 0.1);       /* ダークシャドウ */
+    
+    /* ===== Typography（フォントサイズ） ===== */
+    --font-size-xs: 0.75rem;      /* 12px - 極小 */
+    --font-size-sm: 0.875rem;     /* 14px - 小 */
+    --font-size-base: 1rem;       /* 16px - 基本 */
+    --font-size-lg: 1.125rem;     /* 18px - 大 */
+    --font-size-xl: 1.25rem;      /* 20px - 特大 */
+    --font-size-2xl: 1.5rem;      /* 24px - 2倍大 */
+    --font-size-3xl: 1.875rem;    /* 30px - 3倍大 */
+    --font-size-4xl: 2.25rem;     /* 36px - 4倍大 */
+    --font-size-5xl: 3rem;        /* 48px - 5倍大 */
+    
+    /* ===== Spacing（間隔・余白） ===== */
+    --spacing-xs: 0.5rem;         /* 8px - 極小間隔 */
+    --spacing-sm: 1rem;           /* 16px - 小間隔 */
+    --spacing-md: 1.5rem;         /* 24px - 中間隔 */
+    --spacing-lg: 2rem;           /* 32px - 大間隔 */
+    --spacing-xl: 3rem;           /* 48px - 特大間隔 */
+    --spacing-2xl: 4rem;          /* 64px - 2倍間隔 */
+    --spacing-3xl: 6rem;          /* 96px - 3倍間隔 */
+    
+    /* ===== Border Radius（角丸） ===== */
+    --radius-sm: 0.375rem;        /* 6px - 小角丸 */
+    --radius-md: 0.5rem;          /* 8px - 中角丸 */
+    --radius-lg: 0.75rem;         /* 12px - 大角丸 */
+    --radius-xl: 1rem;            /* 16px - 特大角丸 */
+    --radius-full: 50%;           /* 完全な円形 */
+    
+    /* ===== Transitions（アニメーション時間） ===== */
+    --transition-fast: 0.15s ease-in-out;    /* 高速トランジション */
+    --transition-base: 0.3s ease-in-out;     /* 標準トランジション */
+    --transition-slow: 0.5s ease-in-out;     /* 低速トランジション */
+    
+    /* ===== Container（コンテナ設定） ===== */
+    --container-max-width: 1200px;    /* コンテナ最大幅 */
+    --container-padding: 1rem;        /* コンテナ左右パディング */
+}
+
+/* ===== UTILITY CLASSES（汎用クラス） ===== */
+/* サイト全体で再利用可能なユーティリティクラス */
+
+/* コンテナクラス：コンテンツの最大幅を制限し、中央配置 */
+.container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;                        /* 左右中央配置 */
+    padding: 0 var(--container-padding);
+}
+
+/* ボタンの基本スタイル */
+.btn {
+    display: inline-flex;           /* インラインフレックスボックス */
+    align-items: center;           /* 垂直中央揃え */
+    justify-content: center;       /* 水平中央揃え */
+    padding: 0.75rem 2rem;         /* 内側余白 */
+    font-size: var(--font-size-base);
+    font-weight: 500;              /* 中太字 */
+    text-decoration: none;         /* アンダーラインなし */
+    border: none;                  /* ボーダーなし */
+    border-radius: var(--radius-lg);
+    cursor: pointer;               /* カーソルをポインターに */
+    transition: all var(--transition-base);
+    position: relative;            /* 相対位置指定（ホバーエフェクト用） */
+    overflow: hidden;              /* はみ出し非表示 */
+}
+
+/* プライマリボタン（メインアクション用） */
+.btn--primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: var(--white);
+    box-shadow: 0 4px 15px var(--shadow-light);
+}
+
+/* プライマリボタンのホバー効果 */
+.btn--primary:hover {
+    transform: translateY(-2px);                /* 上に2px移動 */
+    box-shadow: 0 8px 25px var(--shadow-medium); /* シャドウを濃く */
+}
+
+/* セカンダリボタン（補助アクション用） */
+.btn--secondary {
+    background: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+/* セカンダリボタンのホバー効果 */
+.btn--secondary:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+/* 全幅ボタン */
+.btn--full {
+    width: 100%;
+}
+
+/* セクションヘッダーの共通スタイル */
+.section__header {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+}
+
+/* セクションタイトル */
+.section__title {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* セクションサブタイトル */
+.section__subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+    font-weight: 300;
+    letter-spacing: 0.1em;        /* 文字間隔を広げる */
+    text-transform: uppercase;     /* 大文字変換 */
+}
+
+/* ===== HEADER（ヘッダー・ナビゲーション） ===== */
+/* 固定ヘッダー：常に画面上部に表示 */
+.header {
+    position: fixed;                            /* 固定位置 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(253, 248, 245, 0.95);     /* 半透明背景 */
+    backdrop-filter: blur(10px);               /* ぼかし効果 */
+    z-index: 1000;                             /* 最前面表示 */
+    transition: all var(--transition-base);
+    border-bottom: 1px solid rgba(255, 138, 101, 0.1);
+}
+
+/* ナビゲーションコンテナ */
+.nav__container {
+    display: flex;
+    justify-content: space-between;    /* 両端寄せ */
+    align-items: center;               /* 垂直中央揃え */
+    padding: 1rem var(--container-padding);
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+}
+
+/* ロゴリンク */
+.nav__logo-link {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition-base);
+}
+
+/* ロゴホバー効果 */
+.nav__logo-link:hover {
+    color: var(--primary-dark);
+}
+
+/* ナビゲーションリスト */
+.nav__list {
+    display: flex;
+    list-style: none;                  /* リストマーカーなし */
+    gap: var(--spacing-lg);            /* アイテム間の間隔 */
+}
+
+/* ナビゲーションリンク */
+.nav__link {
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+    position: relative;
+}
+
+/* ナビゲーションリンクホバー効果 */
+.nav__link:hover {
+    color: var(--primary-color);
+    background: var(--bg-secondary);
+}
+
+/* ハンバーガーメニューボタン（デフォルトで非表示） */
+.nav__toggle {
+    display: none;                     /* デスクトップでは非表示 */
+    flex-direction: column;
+    cursor: pointer;
+    gap: 0.25rem;
+}
+
+/* ハンバーガーメニューの線 */
+.nav__toggle-line {
+    width: 25px;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-base);
+}
+
+/* ===== HERO SECTION（ヒーローセクション） ===== */
+/* ファーストビュー：サイトの顔となるトップセクション */
+.hero {
+    min-height: 100vh;                  /* 画面全体の高さ */
+    display: flex;
+    align-items: center;                /* 垂直中央揃え */
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    position: relative;
+    overflow: hidden;                   /* はみ出し非表示 */
+}
+
+/* 背景装飾パターン */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    /* SVGパターンで装飾的な円を配置 */
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23ffab91" opacity="0.3"/><circle cx="80" cy="40" r="3" fill="%23ff8a65" opacity="0.2"/><circle cx="40" cy="80" r="1.5" fill="%23ffcc80" opacity="0.4"/></svg>');
+    pointer-events: none;               /* クリックイベントを無効化 */
+}
+
+/* ヒーローコンテナ */
+.hero__container {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+/* ヒーローコンテンツレイアウト */
+.hero__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;     /* 左右2カラム */
+    gap: var(--spacing-3xl);
+    align-items: center;
+}
+
+/* 挨拶テキスト */
+.hero__greeting {
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+    font-weight: 300;
+    display: block;
+    margin-bottom: var(--spacing-sm);
+}
+
+/* メインタイトル */
+.hero__title {
+    font-size: var(--font-size-5xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;                   /* 行間を詰める */
+    margin-bottom: var(--spacing-md);
+}
+
+/* 名前部分（タイピングアニメーション対象） */
+.hero__name {
+    color: var(--primary-color);
+    position: relative;
+}
+
+/* サブタイトル（職業） */
+.hero__subtitle {
+    font-size: var(--font-size-2xl);
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-bottom: var(--spacing-lg);
+}
+
+/* 説明文 */
+.hero__description {
+    font-size: var(--font-size-lg);
+    color: var(--text-light);
+    line-height: 1.8;                   /* 読みやすい行間 */
+    margin-bottom: var(--spacing-xl);
+}
+
+/* CTAボタンコンテナ */
+.hero__buttons {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+/* プロフィール画像エリア */
+.hero__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* プロフィール画像プレースホルダー */
+.hero__image-placeholder {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, var(--primary-light), var(--secondary-color));
+    border-radius: var(--radius-full);  /* 完全な円形 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 20px 40px var(--shadow-medium);
+    animation: float 6s ease-in-out infinite; /* 浮遊アニメーション */
+}
+
+/* アバター絵文字 */
+.hero__avatar {
+    font-size: 8rem;
+    animation: bounce 2s ease-in-out infinite; /* バウンスアニメーション */
+}
+
+/* 浮遊アニメーション */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+/* バウンスアニメーション */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+/* ===== ABOUT SECTION（自己紹介セクション） ===== */
+/* 詳細な自己紹介と統計情報を表示するセクション */
+.about {
+    padding: var(--spacing-3xl) 0;     /* 上下に大きな余白 */
+    background: var(--white);          /* 白背景でコントラストを作る */
+}
+
+/* About コンテンツレイアウト */
+.about__content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;    /* 左側2:右側1の比率 */
+    gap: var(--spacing-3xl);
+    align-items: start;                /* 上端揃え */
+}
+
+/* セクション見出し */
+.about__heading {
+    font-size: var(--font-size-2xl);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-lg);
+    font-weight: 600;
+}
+
+/* 自己紹介文 */
+.about__description {
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+    line-height: 1.8;                  /* 読みやすい行間 */
+    margin-bottom: var(--spacing-xl);
+}
+
+/* 基本情報リストコンテナ */
+.about__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+/* 基本情報の各アイテム */
+.about__info-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+/* 情報ラベル */
+.about__info-label {
+    font-weight: 600;
+    color: var(--text-primary);
+    min-width: 80px;                   /* 最小幅でラベルを揃える */
+}
+
+/* 情報の値 */
+.about__info-value {
+    color: var(--text-secondary);
+}
+
+/* 統計情報カードコンテナ */
+.about__stats {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* 統計カード */
+.stat {
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 4px 20px var(--shadow-light);
+    transition: transform var(--transition-base);
+}
+
+/* 統計カードのホバー効果 */
+.stat:hover {
+    transform: translateY(-5px);       /* 上に5px浮上 */
+}
+
+/* 統計数値 */
+.stat__number {
+    display: block;
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-xs);
+}
+
+/* 統計ラベル */
+.stat__label {
+    font-size: var(--font-size-base);
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* ===== SKILLS SECTION（スキルセクション） ===== */
+/* プログラミング歴のタイムラインとスキルレベルを表示 */
+.skills {
+    padding: var(--spacing-3xl) 0;
+    background: var(--bg-secondary);   /* セクション区別のため背景色変更 */
+}
+
+/* スキルコンテンツレイアウト */
+.skills__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;    /* 左右均等分割 */
+    gap: var(--spacing-3xl);
+}
+
+/* スキル見出し */
+.skills__heading {
+    font-size: var(--font-size-2xl);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-lg);
+    font-weight: 600;
+}
+
+/* タイムラインコンテナ */
+.timeline {
+    position: relative;
+    padding-left: var(--spacing-lg);   /* 左に余白を作ってライン用スペース確保 */
+}
+
+/* タイムライン縦線 */
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;                        /* 細い縦線 */
+    background: var(--primary-light);
+}
+
+/* タイムラインアイテム */
+.timeline__item {
+    position: relative;
+    margin-bottom: var(--spacing-xl);
+    padding-left: var(--spacing-lg);
+}
+
+/* タイムラインドット */
+.timeline__item::before {
+    content: '';
+    position: absolute;
+    left: -6px;                        /* 縦線の中央に配置 */
+    top: 0;
+    width: 12px;
+    height: 12px;
+    background: var(--primary-color);
+    border-radius: var(--radius-full); /* 円形 */
+    border: 3px solid var(--white);    /* 白いボーダーで立体感 */
+}
+
+/* タイムライン日付 */
+.timeline__date {
+    font-size: var(--font-size-sm);
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+}
+
+/* タイムラインコンテンツのタイトル */
+.timeline__content h4 {
+    font-size: var(--font-size-lg);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+    font-weight: 600;
+}
+
+/* タイムラインコンテンツの説明 */
+.timeline__content p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* スキルバーコンテナ */
+.skill-bars {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* 個別スキルバー */
+.skill-bar {
+    background: var(--white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 15px var(--shadow-light);
+}
+
+/* スキルバー情報（名前と％） */
+.skill-bar__info {
+    display: flex;
+    justify-content: space-between;    /* 左右端寄せ */
+    margin-bottom: var(--spacing-sm);
+}
+
+/* スキル名 */
+.skill-bar__name {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* スキル percentage */
+.skill-bar__percentage {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* プログレスバー背景 */
+.skill-bar__progress {
+    height: 8px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+/* プログレスバー進捗部分 */
+.skill-bar__fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+    border-radius: var(--radius-sm);
+    width: 0%;                         /* 初期状態は0% */
+    transition: width 2s ease-out;     /* JavaScriptでアニメーション */
+}
+
+/* ===== EXPERIENCE SECTION（経歴セクション） ===== */
+/* 職歴と学歴を表示するセクション */
+.experience {
+    padding: var(--spacing-3xl) 0;
+    background: var(--white);          /* Aboutと同じ白背景 */
+}
+
+/* 経歴コンテンツレイアウト */
+.experience__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;    /* 職歴と学歴を左右分割 */
+    gap: var(--spacing-3xl);
+}
+
+/* 経歴見出し */
+.experience__heading {
+    font-size: var(--font-size-2xl);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-lg);
+    font-weight: 600;
+}
+
+/* 経歴タイムライン */
+.experience__timeline {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+/* 経歴アイテム */
+.experience__item {
+    background: var(--bg-secondary);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--primary-color); /* 左に色付きボーダー */
+    transition: transform var(--transition-base);
+}
+
+/* 経歴アイテムのホバー効果 */
+.experience__item:hover {
+    transform: translateX(5px);        /* 右に5px移動 */
+}
+
+/* 期間表示 */
+.experience__period {
+    font-size: var(--font-size-sm);
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+}
+
+/* 職位・学歴タイトル */
+.experience__title {
+    font-size: var(--font-size-lg);
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+}
+
+/* 会社名・学校名 */
+.experience__company {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+    font-style: italic;                /* イタリック体で区別 */
+}
+
+/* 業務内容・活動リスト */
+.experience__duties {
+    list-style: none;                  /* デフォルトリストマーカーを削除 */
+    padding-left: 0;
+}
+
+/* 業務内容・活動の各項目 */
+.experience__duties li {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xs);
+    padding-left: var(--spacing-md);
+    position: relative;
+}
+
+/* カスタム箇条書きマーカー */
+.experience__duties li::before {
+    content: '•';                      /* ドット文字 */
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+/* ===== CONTACT SECTION（お問い合わせセクション） ===== */
+/* 連絡先情報とお問い合わせフォームを表示 */
+.contact {
+    padding: var(--spacing-3xl) 0;
+    background: var(--bg-accent);      /* アクセント背景色でセクション区別 */
+}
+
+/* コンタクトコンテンツレイアウト */
+.contact__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;    /* 情報とフォームを左右分割 */
+    gap: var(--spacing-3xl);
+}
+
+/* コンタクト見出し */
+.contact__heading {
+    font-size: var(--font-size-2xl);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-lg);
+    font-weight: 600;
+}
+
+/* コンタクト説明文 */
+.contact__description {
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-xl);
+}
+
+/* 連絡先詳細コンテナ */
+.contact__details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* 連絡先詳細アイテム */
+.contact__detail {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 15px var(--shadow-light);
+}
+
+/* 連絡先アイコン */
+.contact__icon {
+    font-size: var(--font-size-2xl);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-full);
+}
+
+/* 連絡先詳細情報のタイトル */
+.contact__detail-info h4 {
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+}
+
+/* 連絡先詳細情報の内容 */
+.contact__detail-info p {
+    color: var(--text-secondary);
+}
+
+/* お問い合わせフォーム */
+.contact__form {
+    background: var(--white);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 10px 30px var(--shadow-medium);
+}
+
+/* フォームグループ */
+.form__group {
+    margin-bottom: var(--spacing-lg);
+}
+
+/* フォームラベル */
+.form__label {
+    display: block;
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+}
+
+/* フォーム入力フィールド共通スタイル */
+.form__input, .form__textarea {
+    width: 100%;
+    padding: var(--spacing-md);
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+    border: 2px solid var(--bg-secondary);
+    border-radius: var(--radius-md);
+    transition: border-color var(--transition-base);
+    font-family: inherit;               /* 親要素のフォントを継承 */
+}
+
+/* フォーカス時のスタイル */
+.form__input:focus, .form__textarea:focus {
+    outline: none;
+    border-color: var(--primary-color); /* フォーカス時はプライマリカラー */
+}
+
+/* テキストエリア特有の設定 */
+.form__textarea {
+    resize: vertical;                   /* 縦方向のみリサイズ可能 */
+    min-height: 120px;
+}
+
+/* ===== FOOTER（フッター） ===== */
+/* サイト下部の著作権とリンク表示エリア */
+.footer {
+    background: var(--text-primary);   /* ダークブラウン背景 */
+    color: var(--white);
+    padding: var(--spacing-lg) 0;
+}
+
+/* フッターコンテンツレイアウト */
+.footer__content {
+    display: flex;
+    justify-content: space-between;    /* 左右両端寄せ */
+    align-items: center;
+}
+
+/* コピーライトテキスト */
+.footer__text {
+    color: rgba(255, 255, 255, 0.8);  /* 少し透明な白 */
+}
+
+/* フッターリンクコンテナ */
+.footer__links {
+    display: flex;
+    gap: var(--spacing-lg);
+}
+
+/* フッターリンク */
+.footer__link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color var(--transition-base);
+}
+
+/* フッターリンクホバー効果 */
+.footer__link:hover {
+    color: var(--white);               /* ホバー時は完全な白 */
+}
+
+/* ===== SCROLL TO TOP（トップに戻るボタン） ===== */
+/* 固定位置のスクロールボタン */
+.scroll-top {
+    position: fixed;
+    bottom: 2rem;                      /* 画面下から2rem */
+    right: 2rem;                       /* 画面右から2rem */
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-full); /* 円形 */
+    cursor: pointer;
+    box-shadow: 0 4px 15px var(--shadow-medium);
+    opacity: 0;                        /* 初期状態は非表示 */
+    visibility: hidden;
+    transition: all var(--transition-base);
+    z-index: 1000;                     /* 他要素より前面 */
+}
+
+/* スクロールボタン表示状態 */
+.scroll-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* スクロールボタンホバー効果 */
+.scroll-top:hover {
+    transform: translateY(-2px);       /* 上に2px移動 */
+    box-shadow: 0 8px 25px var(--shadow-medium);
+}
+
+/* スクロールボタン矢印 */
+.scroll-top__arrow {
+    font-size: var(--font-size-xl);
+    font-weight: bold;
+}
+
+/* ===== RESPONSIVE DESIGN（レスポンシブデザイン） ===== */
+/* タブレット・スマートフォン向けのスタイル調整 */
+
+/* タブレット向けレイアウト（768px以下） */
+@media (max-width: 768px) {
+    /* フォントサイズとスペーシングの調整 */
+    :root {
+        --font-size-5xl: 2.5rem;      /* モバイルではタイトルサイズを縮小 */
+        --font-size-4xl: 2rem;
+        --font-size-3xl: 1.75rem;
+        --spacing-3xl: 3rem;          /* セクション間の余白を縮小 */
+        --spacing-2xl: 2rem;
+    }
+    
+    /* モバイルナビゲーションメニュー */
+    .nav__menu {
+        position: fixed;
+        top: 70px;                     /* ヘッダー高さ分下げる */
+        left: -100%;                   /* 初期位置は画面外 */
+        width: 100%;
+        height: calc(100vh - 70px);    /* ヘッダー分を除いた高さ */
+        background: var(--bg-primary);
+        transition: left var(--transition-base);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: var(--spacing-xl);
+    }
+    
+    /* モバイルメニュー表示状態 */
+    .nav__menu.show {
+        left: 0;                       /* 画面内に移動 */
+    }
+    
+    /* モバイルナビゲーションリスト */
+    .nav__list {
+        flex-direction: column;        /* 縦並び */
+        gap: var(--spacing-lg);
+        width: 100%;
+    }
+    
+    /* モバイルナビゲーションリンク */
+    .nav__link {
+        padding: var(--spacing-md);
+        text-align: center;
+        border-radius: var(--radius-lg);
+        background: var(--white);      /* 背景を白にして視認性向上 */
+    }
+    
+    /* ハンバーガーメニューボタンを表示 */
+    .nav__toggle {
+        display: flex;
+    }
+    
+    /* ハンバーガーメニューアクティブ時のアニメーション */
+    .nav__toggle.active .nav__toggle-line:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px); /* 1本目：右斜め */
+    }
+    
+    .nav__toggle.active .nav__toggle-line:nth-child(2) {
+        opacity: 0;                    /* 2本目：非表示 */
+    }
+    
+    .nav__toggle.active .nav__toggle-line:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px); /* 3本目：左斜め */
+    }
+    
+    /* ヒーローセクションを1カラムレイアウトに */
+    .hero__content {
+        grid-template-columns: 1fr;    /* 単一カラム */
+        text-align: center;
+        gap: var(--spacing-xl);
+    }
+    
+    /* ヒーローボタンを縦並びに */
+    .hero__buttons {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    /* プロフィール画像サイズ縮小 */
+    .hero__image-placeholder {
+        width: 250px;
+        height: 250px;
+    }
+    
+    /* アバターサイズ縮小 */
+    .hero__avatar {
+        font-size: 6rem;
+    }
+    
+    /* 各セクションを1カラムレイアウトに変更 */
+    .about__content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+    }
+    
+    .skills__content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+    }
+    
+    .experience__content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+    }
+    
+    .contact__content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+    }
+    
+    /* フッターを縦並びレイアウトに */
+    .footer__content {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        text-align: center;
+    }
+    
+    /* フッターリンクを中央揃え */
+    .footer__links {
+        justify-content: center;
+    }
+}
+
+/* スマートフォン向けレイアウト（480px以下） */
+@media (max-width: 480px) {
+    /* より小さな画面向けの調整 */
+    :root {
+        --container-padding: 1rem;     /* コンテナパディング縮小 */
+        --font-size-5xl: 2rem;        /* さらにフォントサイズ縮小 */
+        --font-size-3xl: 1.5rem;
+        --font-size-2xl: 1.25rem;
+    }
+    
+    /* プロフィール画像をさらに縮小 */
+    .hero__image-placeholder {
+        width: 200px;
+        height: 200px;
+    }
+    
+    /* アバターをさらに縮小 */
+    .hero__avatar {
+        font-size: 4rem;
+    }
+    
+    /* 統計カード間隔を詰める */
+    .about__stats {
+        gap: var(--spacing-md);
+    }
+    
+    /* 統計カードパディング縮小 */
+    .stat {
+        padding: var(--spacing-md);
+    }
+}
