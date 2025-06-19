@@ -350,6 +350,28 @@ body {
 .hero__avatar {
     font-size: 8rem;
     animation: bounce 2s ease-in-out infinite; /* バウンスアニメーション */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* 円形範囲外の画像を隠す */
+    border-radius: 50%; /* 完全な円形 */
+}
+
+/* プロフィール画像 */
+.hero__avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 画像のアスペクト比を保ちながらコンテナにフィット */
+    object-position: center; /* 画像の中央部分を表示 */
+    border-radius: 50%; /* 円形にクリップ */
+    transition: transform 0.3s ease; /* ホバー時のアニメーション */
+}
+
+/* プロフィール画像のホバー効果 */
+.hero__avatar-img:hover {
+    transform: scale(1.05); /* 軽微な拡大効果 */
 }
 
 /* 浮遊アニメーション */
@@ -838,164 +860,82 @@ body {
     color: var(--white);               /* ホバー時は完全な白 */
 }
 
-/* ===== SCROLL TO TOP（トップに戻るボタン） ===== */
-/* 固定位置のスクロールボタン */
-.scroll-top {
-    position: fixed;
-    bottom: 2rem;                      /* 画面下から2rem */
-    right: 2rem;                       /* 画面右から2rem */
-    width: 50px;
-    height: 50px;
-    background: var(--primary-color);
-    color: var(--white);
-    border: none;
-    border-radius: var(--radius-full); /* 円形 */
-    cursor: pointer;
-    box-shadow: 0 4px 15px var(--shadow-medium);
-    opacity: 0;                        /* 初期状態は非表示 */
-    visibility: hidden;
+/* GitHubリンク特別スタイル */
+.footer__github {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-md);
     transition: all var(--transition-base);
-    z-index: 1000;                     /* 他要素より前面 */
 }
 
-/* スクロールボタン表示状態 */
+.footer__github:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* GitHubアイコン */
+.footer__github-icon {
+    font-size: 1.2em;
+    color: var(--accent-color);
+}
+
+/* ===== SCROLL TO TOP BUTTON（スクロールトップボタン） ===== */
+/* ページ下部でのスクロール時に表示される「トップに戻る」ボタン */
+.scroll-top {
+    position: fixed;                     /* 固定位置 */
+    bottom: var(--spacing-lg);          /* 下から20px */
+    right: var(--spacing-lg);           /* 右から20px */
+    background: var(--primary-color);   /* 背景色：メインカラー */
+    color: var(--white);                /* テキスト色：白 */
+    border: none;                       /* ボーダーなし */
+    border-radius: 50%;                 /* 完全な円形 */
+    width: 50px;                        /* 幅50px */
+    height: 50px;                       /* 高さ50px */
+    display: flex;                      /* フレックスボックス */
+    align-items: center;                /* 垂直中央揃え */
+    justify-content: center;            /* 水平中央揃え */
+    cursor: pointer;                    /* ポインターカーソル */
+    box-shadow: 0 4px 12px var(--shadow-medium); /* シャドウ効果 */
+    transform: translateY(100px);       /* 初期状態では下に隠す */
+    opacity: 0;                         /* 初期状態では透明 */
+    transition: all 0.3s ease;         /* スムーズなアニメーション */
+    z-index: 1000;                     /* 他の要素より前面に表示 */
+}
+
+/* スクロールトップボタンの表示状態 */
 .scroll-top.show {
-    opacity: 1;
-    visibility: visible;
+    transform: translateY(0);           /* 正常位置に表示 */
+    opacity: 1;                         /* 完全に不透明 */
 }
 
-/* スクロールボタンホバー効果 */
+/* スクロールトップボタンのホバー効果 */
 .scroll-top:hover {
-    transform: translateY(-2px);       /* 上に2px移動 */
-    box-shadow: 0 8px 25px var(--shadow-medium);
+    background: var(--primary-dark);    /* 背景色をダークに変更 */
+    transform: translateY(-2px);        /* 軽く上に浮上 */
+    box-shadow: 0 6px 16px var(--shadow-medium); /* シャドウを強化 */
 }
 
-/* スクロールボタン矢印 */
+/* スクロールトップボタンの矢印アイコン */
 .scroll-top__arrow {
-    font-size: var(--font-size-xl);
-    font-weight: bold;
+    font-size: var(--font-size-lg);    /* フォントサイズ */
+    line-height: 1;                    /* 行間を1に設定 */
+    font-weight: bold;                 /* 太字 */
 }
 
-/* ===== RESPONSIVE DESIGN（レスポンシブデザイン） ===== */
-/* タブレット・スマートフォン向けのスタイル調整 */
-
-/* タブレット向けレイアウト（768px以下） */
+/* ===== MEDIA QUERIES（レスポンシブデザイン） ===== */
+/* タブレット以下（768px以下）のスタイル */
 @media (max-width: 768px) {
-    /* フォントサイズとスペーシングの調整 */
-    :root {
-        --font-size-5xl: 2.5rem;      /* モバイルではタイトルサイズを縮小 */
-        --font-size-4xl: 2rem;
-        --font-size-3xl: 1.75rem;
-        --spacing-3xl: 3rem;          /* セクション間の余白を縮小 */
-        --spacing-2xl: 2rem;
-    }
-    
-    /* モバイルナビゲーションメニュー */
-    .nav__menu {
-        position: fixed;
-        top: 70px;                     /* ヘッダー高さ分下げる */
-        left: -100%;                   /* 初期位置は画面外 */
-        width: 100%;
-        height: calc(100vh - 70px);    /* ヘッダー分を除いた高さ */
-        background: var(--bg-primary);
-        transition: left var(--transition-base);
-        flex-direction: column;
-        justify-content: flex-start;
-        padding: var(--spacing-xl);
-    }
-    
-    /* モバイルメニュー表示状態 */
-    .nav__menu.show {
-        left: 0;                       /* 画面内に移動 */
-    }
-    
-    /* モバイルナビゲーションリスト */
-    .nav__list {
-        flex-direction: column;        /* 縦並び */
-        gap: var(--spacing-lg);
-        width: 100%;
-    }
-    
-    /* モバイルナビゲーションリンク */
-    .nav__link {
-        padding: var(--spacing-md);
-        text-align: center;
-        border-radius: var(--radius-lg);
-        background: var(--white);      /* 背景を白にして視認性向上 */
-    }
-    
-    /* ハンバーガーメニューボタンを表示 */
-    .nav__toggle {
-        display: flex;
-    }
-    
-    /* ハンバーガーメニューアクティブ時のアニメーション */
-    .nav__toggle.active .nav__toggle-line:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px); /* 1本目：右斜め */
-    }
-    
-    .nav__toggle.active .nav__toggle-line:nth-child(2) {
-        opacity: 0;                    /* 2本目：非表示 */
-    }
-    
-    .nav__toggle.active .nav__toggle-line:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -6px); /* 3本目：左斜め */
-    }
-    
-    /* ヒーローセクションを1カラムレイアウトに */
-    .hero__content {
-        grid-template-columns: 1fr;    /* 単一カラム */
-        text-align: center;
-        gap: var(--spacing-xl);
-    }
-    
-    /* ヒーローボタンを縦並びに */
-    .hero__buttons {
-        flex-direction: column;
-        gap: var(--spacing-md);
-    }
-    
-    /* プロフィール画像サイズ縮小 */
-    .hero__image-placeholder {
-        width: 250px;
-        height: 250px;
-    }
-    
-    /* アバターサイズ縮小 */
-    .hero__avatar {
-        font-size: 6rem;
-    }
-    
-    /* 各セクションを1カラムレイアウトに変更 */
-    .about__content {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
-    }
-    
-    .skills__content {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
-    }
-    
-    .experience__content {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
-    }
-    
-    .contact__content {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
-    }
-    
-    /* フッターを縦並びレイアウトに */
+    /* フッターをモバイル用に縦積み */
     .footer__content {
         flex-direction: column;
         gap: var(--spacing-md);
         text-align: center;
     }
     
-    /* フッターリンクを中央揃え */
-    .footer__links {
+    /* GitHubリンクをモバイル用に調整 */
+    .footer__github {
         justify-content: center;
     }
 }
