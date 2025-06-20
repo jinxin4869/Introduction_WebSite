@@ -1,405 +1,465 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
+  <head>
     <!-- 文字エンコーディングを UTF-8 に設定 -->
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <!-- レスポンシブデザインのためのビューポート設定 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- ページタイトル（ブラウザタブに表示） -->
     <title>陳 錦鑫 - ポートフォリオ</title>
     <!-- SEO対策のためのページ説明文 -->
-    <meta name="description" content="田中太郎のポートフォリオサイト。Web開発者としての経歴、スキル、プロジェクトをご紹介します。">
+    <meta
+      name="description"
+      content="田中太郎のポートフォリオサイト。Web開発者としての経歴、スキル、プロジェクトをご紹介します。"
+    />
     <!-- メインCSSファイルの読み込み -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" />
     <!-- Google Fontsの事前接続（パフォーマンス向上） -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <!-- 日本語フォント「Noto Sans JP」の読み込み -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <!-- ===== ヘッダー（固定ナビゲーション） ===== -->
     <header class="header">
-        <!-- ナビゲーションバー -->
-        <nav class="nav">
-            <!-- ナビゲーションコンテナ（最大幅制限とセンタリング） -->
-            <div class="nav__container">
-                <!-- ロゴ部分 -->
-                <div class="nav__logo">
-                    <a href="#home" class="nav__logo-link">Jinxin Chen</a>
-                </div>
-                <!-- メインナビゲーションメニュー（モバイルでは隠れる） -->
-                <div class="nav__menu" id="nav-menu">
-                    <ul class="nav__list">
-                        <!-- 各セクションへのリンク -->
-                        <li class="nav__item">
-                            <a href="#home" class="nav__link">ホーム</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#about" class="nav__link">自己紹介</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#skills" class="nav__link">スキル</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#experience" class="nav__link">経歴</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#contact" class="nav__link">お問い合わせ</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- ハンバーガーメニューボタン（モバイル専用） -->
-                <div class="nav__toggle" id="nav-toggle">
-                    <span class="nav__toggle-line"></span>
-                    <span class="nav__toggle-line"></span>
-                    <span class="nav__toggle-line"></span>
-                </div>
-            </div>
-        </nav>
+      <!-- ナビゲーションバー -->
+      <nav class="nav">
+        <!-- ナビゲーションコンテナ（最大幅制限とセンタリング） -->
+        <div class="nav__container">
+          <!-- ロゴ部分 -->
+          <div class="nav__logo">
+            <a href="#home" class="nav__logo-link">Jinxin Chen</a>
+          </div>
+          <!-- メインナビゲーションメニュー（モバイルでは隠れる） -->
+          <div class="nav__menu" id="nav-menu">
+            <ul class="nav__list">
+              <!-- 各セクションへのリンク -->
+              <li class="nav__item">
+                <a href="#home" class="nav__link">ホーム</a>
+              </li>
+              <li class="nav__item">
+                <a href="#about" class="nav__link">自己紹介</a>
+              </li>
+              <li class="nav__item">
+                <a href="#skills" class="nav__link">スキル</a>
+              </li>
+              <li class="nav__item">
+                <a href="#experience" class="nav__link">経歴</a>
+              </li>
+              <li class="nav__item">
+                <a href="#contact" class="nav__link">お問い合わせ</a>
+              </li>
+            </ul>
+          </div>
+          <!-- ハンバーガーメニューボタン（モバイル専用） -->
+          <div class="nav__toggle" id="nav-toggle">
+            <span class="nav__toggle-line"></span>
+            <span class="nav__toggle-line"></span>
+            <span class="nav__toggle-line"></span>
+          </div>
+        </div>
+      </nav>
     </header>
 
     <!-- ===== メインコンテンツ ===== -->
     <main class="main">
-        <!-- ===== ヒーローセクション（トップページ） ===== -->
-        <section id="home" class="hero">
-            <div class="hero__container">
-                <div class="hero__content">
-                    <!-- 左側：テキストコンテンツ -->
-                    <div class="hero__text">
-                        <!-- 挨拶文 -->
-                        <span class="hero__greeting">こんにちは、</span>
-                        <!-- メインタイトル（名前部分はJavaScriptでタイピングアニメーション） -->
-                        <h1 class="hero__title">
-                            私は<span class="hero__name">陳 錦鑫</span>です
-                        </h1>
-                        <!-- 職業・肩書き -->
-                        <h2 class="hero__subtitle">フルスタックエンジニアを目指しています。</h2>
-                        <!-- 自己紹介文 -->
-                        <p class="hero__description">
-                            実務未経験からのスタートですが、日々学習し成長し続けています。
-                            モダンな技術を学びながら、ユーザー体験を重視したWebアプリケーション開発に取り組んでいます。
-                        </p>
-                        <!-- CTA（Call To Action）ボタン -->
-                        <div class="hero__buttons">
-                            <a href="#contact" class="btn btn--primary">お問い合わせ</a>
-                            <a href="#about" class="btn btn--secondary">詳しく見る</a>
-                        </div>
-                    </div>
-                    <!-- 右側：プロフィール画像エリア -->
-                    <div class="hero__image">
-                        <!-- プレースホルダー画像（実際の写真に置き換え可能） -->
-                        <div class="hero__image-placeholder">
-                            <div class="hero__avatar">
-                                <img src="assets/images/パンダ.png" alt="プロフィール画像" class="hero__avatar-img">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <!-- ===== ヒーローセクション（トップページ） ===== -->
+      <section id="home" class="hero">
+        <div class="hero__container">
+          <div class="hero__content">
+            <!-- 左側：テキストコンテンツ -->
+            <div class="hero__text">
+              <!-- 挨拶文 -->
+              <span class="hero__greeting">こんにちは、</span>
+              <!-- メインタイトル（名前部分はJavaScriptでタイピングアニメーション） -->
+              <h1 class="hero__title">
+                私は<span class="hero__name">陳 錦鑫</span>です
+              </h1>
+              <!-- 職業・肩書き -->
+              <h2 class="hero__subtitle">
+                フルスタックエンジニアを目指しています。
+              </h2>
+              <!-- 自己紹介文 -->
+              <p class="hero__description">
+                実務未経験からのスタートですが、日々学習し成長し続けています。
+                モダンな技術を学びながら、ユーザー体験を重視したWebアプリケーション開発に取り組んでいます。
+              </p>
+              <!-- CTA（Call To Action）ボタン -->
+              <div class="hero__buttons">
+                <a href="#contact" class="btn btn--primary">お問い合わせ</a>
+                <a href="#about" class="btn btn--secondary">詳しく見る</a>
+              </div>
             </div>
-        </section>
+            <!-- 右側：プロフィール画像エリア -->
+            <div class="hero__image">
+              <!-- プレースホルダー画像（実際の写真に置き換え可能） -->
+              <div class="hero__image-placeholder">
+                <div class="hero__avatar">
+                  <img
+                    src="assets/images/パンダ.png"
+                    alt="プロフィール画像"
+                    class="hero__avatar-img"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <!-- ===== 自己紹介セクション ===== -->
-        <section id="about" class="about">
-            <div class="container">
-                <!-- セクションヘッダー -->
-                <div class="section__header">
-                    <h2 class="section__title">自己紹介</h2>
-                    <p class="section__subtitle">About Me</p>
+      <!-- ===== 自己紹介セクション ===== -->
+      <section id="about" class="about">
+        <div class="container">
+          <!-- セクションヘッダー -->
+          <div class="section__header">
+            <h2 class="section__title">自己紹介</h2>
+            <p class="section__subtitle">About Me</p>
+          </div>
+          <div class="about__content">
+            <!-- 左側：詳細な自己紹介テキスト -->
+            <div class="about__text">
+              <h3 class="about__heading">プロフィール</h3>
+              <!-- 自己紹介文 -->
+              <p class="about__description">
+                まだ経験は浅いですが、身の回りの小さな不便を解消するツールを作ったり、
+                効率化のためのスクリプトを書いたりすることから始めています。
+                「こんなものがあったら便利だな」というアイデアを形にできる技術力を身につけ、
+                多くの人に価値を提供できるエンジニアになることが目標です。
+              </p>
+              <!-- 基本情報リスト -->
+              <div class="about__info">
+                <div class="about__info-item">
+                  <span class="about__info-label">所在地:</span>
+                  <span class="about__info-value">東京都</span>
                 </div>
-                <div class="about__content">
-                    <!-- 左側：詳細な自己紹介テキスト -->
-                    <div class="about__text">
-                        <h3 class="about__heading">プロフィール</h3>
-                        <!-- 自己紹介文 -->
-                        <p class="about__description">
-                            Web開発の世界に魅了され、日々新しい技術の習得に励んでいます。
-                            ユーザーのニーズを理解し、それを形にすることに喜びを感じています。
-                            チームワークを大切にし、常に学び続ける姿勢を持っています。
-                        </p>
-                        <!-- 基本情報リスト -->
-                        <div class="about__info">
-                            <div class="about__info-item">
-                                <span class="about__info-label">所在地:</span>
-                                <span class="about__info-value">東京都</span>
-                            </div>
-                            <div class="about__info-item">
-                                <span class="about__info-label">趣味:</span>
-                                <span class="about__info-value">ピアノ、バスケ、食べ放題</span>
-                            </div>
-                            <div class="about__info-item">
-                                <span class="about__info-label">悩み事:</span>
-                                <span class="about__info-value">モニターを買い替える必要があるかどうか</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 右側：統計情報カード -->
-                    <div class="about__stats">
-                        <!-- 経験年数 -->
-                        <div class="stat">
-                            <span class="stat__number">1</span>
-                            <span class="stat__label">年の経験</span>
-                        </div>
-                        <!-- 完成プロジェクト数 -->
-                        <div class="stat">
-                            <span class="stat__number">2</span>
-                            <span class="stat__label">完成プロジェクト</span>
-                        </div>
-                        <!-- 習得技術数 -->
-                        <div class="stat">
-                            <span class="stat__number">3+</span>
-                            <span class="stat__label">習得技術</span><br>
-                        </div>
-                    </div>
+                <div class="about__info-item">
+                  <span class="about__info-label">趣味:</span>
+                  <span class="about__info-value"
+                    >ピアノ、バスケ、食べ放題</span
+                  >
                 </div>
+                <div class="about__info-item">
+                  <span class="about__info-label">資格:</span>
+                  <span class="about__info-value"
+                    >基本情報技術者試験 合格, AWS CLF取得</span
+                  >
+                </div>
+              </div>
             </div>
-        </section>
+            <!-- 右側：統計情報カード -->
+            <div class="about__stats">
+              <!-- 経験年数 -->
+              <div class="stat">
+                <span class="stat__number">1</span>
+                <span class="stat__label">年の経験</span>
+              </div>
+              <!-- 完成プロジェクト数 -->
+              <div class="stat">
+                <span class="stat__number">2</span>
+                <span class="stat__label">完成プロジェクト</span>
+              </div>
+              <!-- 習得技術数 -->
+              <div class="stat">
+                <span class="stat__number">3+</span>
+                <span class="stat__label">習得技術</span><br />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <!-- ===== プログラミング歴・スキルセクション ===== -->
-        <section id="skills" class="skills">
-            <div class="container">
-                <!-- セクションヘッダー -->
-                <div class="section__header">
-                    <h2 class="section__title">プログラミング歴・スキル</h2>
-                    <p class="section__subtitle">Programming Skills</p>
+      <!-- ===== プログラミング歴・スキルセクション ===== -->
+      <section id="skills" class="skills">
+        <div class="container">
+          <!-- セクションヘッダー -->
+          <div class="section__header">
+            <h2 class="section__title">プログラミング歴・スキル</h2>
+            <p class="section__subtitle">Programming Skills</p>
+          </div>
+          <div class="skills__content">
+            <!-- 左側：プログラミング歴のタイムライン -->
+            <div class="skills__timeline">
+              <h3 class="skills__heading">プログラミング歴</h3>
+              <div class="timeline">
+                <!-- 2021年の学習開始 -->
+                <div class="timeline__item">
+                  <div class="timeline__date">- 2021年</div>
+                  <div class="timeline__content">
+                    <h4>プログラミング学習開始</h4>
+                    <p>大学にてHTML、CSS、Javaの基礎を勉強</p>
+                  </div>
                 </div>
-                <div class="skills__content">
-                    <!-- 左側：プログラミング歴のタイムライン -->
-                    <div class="skills__timeline">
-                        <h3 class="skills__heading">プログラミング歴</h3>
-                        <div class="timeline">
-                            <!-- 2021年の学習開始 -->
-                            <div class="timeline__item">
-                                <div class="timeline__date">- 2021年</div>
-                                <div class="timeline__content">
-                                    <h4>プログラミング学習開始</h4>
-                                    <p>大学にてHTML、CSS、Javaの基礎を勉強</p>
-                                </div>
-                            </div>
-                            <!-- 2024年の実案件経験 -->
-                            <div class="timeline__item">
-                                <div class="timeline__date">2024年 4月 - 2025年 1月</div>
-                                <div class="timeline__content">
-                                    <h4>プログラミングスクール「RUNTEQ」</h4>
-                                    <p>Ruby, Railsそのほか体系的な勉強</p>
-                                </div>
-                            </div>
-                            <!-- 2025年の現在 -->
-                            <div class="timeline__item">
-                                <div class="timeline__date">2025年 1月- 現在</div>
-                                <div class="timeline__content">
-                                    <h4>個人開発「Otter Bank」をリリース</h4>
-                                    <a href="https://otter-bank.vercel.app/" alt ="開発リンク">Otter Bank</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 右側：技術スキルのプログレスバー -->
-                    <div class="skills__tech">
-                        <h3 class="skills__heading">技術スキル</h3>
-                        <div class="skill-bars">
-                            <!-- HTML/CSS スキルレベル -->
-                            <div class="skill-bar">
-                                <div class="skill-bar__info">
-                                    <span class="skill-bar__name">HTML/CSS</span>
-                                    <span class="skill-bar__percentage">70%</span>
-                                </div>
-                                <div class="skill-bar__progress">
-                                    <!-- data-width属性はJavaScriptでアニメーション用 -->
-                                    <div class="skill-bar__fill" data-width="70"></div>
-                                </div>
-                            </div>
-                            <!-- JavaScript スキルレベル -->
-                            <div class="skill-bar">
-                                <div class="skill-bar__info">
-                                    <span class="skill-bar__name">Ruby</span>
-                                    <span class="skill-bar__percentage">65%</span>
-                                </div>
-                                <div class="skill-bar__progress">
-                                    <div class="skill-bar__fill" data-width="65"></div>
-                                </div>
-                            </div>
-                            <!-- React スキルレベル -->
-                            <div class="skill-bar">
-                                <div class="skill-bar__info">
-                                    <span class="skill-bar__name">React</span>
-                                    <span class="skill-bar__percentage">50%</span>
-                                </div>
-                                <div class="skill-bar__progress">
-                                    <div class="skill-bar__fill" data-width="50"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <!-- 2024年の実案件経験 -->
+                <div class="timeline__item">
+                  <div class="timeline__date">2024年 4月 - 2025年 1月</div>
+                  <div class="timeline__content">
+                    <h4>プログラミングスクール「RUNTEQ」</h4>
+                    <p>Ruby, Railsそのほか体系的な勉強</p>
+                  </div>
                 </div>
+                <!-- 2025年の現在 -->
+                <div class="timeline__item">
+                  <div class="timeline__date">2025年 1月- 現在</div>
+                  <div class="timeline__content">
+                    <h4>個人開発「Otter Bank」をリリース</h4>
+                    <a href="https://otter-bank.vercel.app/" alt="開発リンク"
+                      >Otter Bank</a
+                    >
+                  </div>
+                </div>
+              </div>
             </div>
-        </section>
+            <!-- 右側：技術スキルのプログレスバー -->
+            <div class="skills__tech">
+              <h3 class="skills__heading">技術スキル</h3>
+              <div class="skill-bars">
+                <!-- HTML/CSS スキルレベル -->
+                <div class="skill-bar">
+                  <div class="skill-bar__info">
+                    <span class="skill-bar__name">HTML/CSS</span>
+                    <span class="skill-bar__percentage">70%</span>
+                  </div>
+                  <div class="skill-bar__progress">
+                    <!-- data-width属性はJavaScriptでアニメーション用 -->
+                    <div class="skill-bar__fill" data-width="70"></div>
+                  </div>
+                </div>
+                <!-- JavaScript スキルレベル -->
+                <div class="skill-bar">
+                  <div class="skill-bar__info">
+                    <span class="skill-bar__name">Ruby</span>
+                    <span class="skill-bar__percentage">65%</span>
+                  </div>
+                  <div class="skill-bar__progress">
+                    <div class="skill-bar__fill" data-width="65"></div>
+                  </div>
+                </div>
+                <!-- React スキルレベル -->
+                <div class="skill-bar">
+                  <div class="skill-bar__info">
+                    <span class="skill-bar__name">React</span>
+                    <span class="skill-bar__percentage">50%</span>
+                  </div>
+                  <div class="skill-bar__progress">
+                    <div class="skill-bar__fill" data-width="50"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <!-- ===== 経歴セクション ===== -->
-        <section id="experience" class="experience">
-            <div class="container">
-                <!-- セクションヘッダー -->
-                <div class="section__header">
-                    <h2 class="section__title">経歴</h2>
-                    <p class="section__subtitle">Experience & Education</p>
+      <!-- ===== 経歴セクション ===== -->
+      <section id="experience" class="experience">
+        <div class="container">
+          <!-- セクションヘッダー -->
+          <div class="section__header">
+            <h2 class="section__title">経歴</h2>
+            <p class="section__subtitle">Experience & Education</p>
+          </div>
+          <div class="experience__content">
+            <!-- 左側：職歴 -->
+            <div class="experience__section">
+              <h3 class="experience__heading">職歴</h3>
+              <div class="experience__timeline">
+                <div class="experience__item">
+                  <div class="experience__period">2024年6月 - 現在</div>
+                  <div class="experience__details">
+                    <h4 class="experience__title">車両運動性能実験</h4>
+                    <p class="experience__company">株式会社エクステック</p>
+                    <!-- 業務内容リスト -->
+                    <ul class="experience__duties">
+                      <li>ICC評価実験</li>
+                      <li>カメラ台上評価実験</li>
+                      <li>AWSツール運用保守</li>
+                      <li>DX化に向けたツール開発</li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="experience__content">
-                    <!-- 左側：職歴 -->
-                    <div class="experience__section">
-                        <h3 class="experience__heading">職歴</h3>
-                        <div class="experience__timeline">
-                            <!-- 現在の仕事：フリーランス -->
-                            <div class="experience__item">
-                                <div class="experience__period">2024年 - 現在</div>
-                                <div class="experience__details">
-                                    <h4 class="experience__title">フリーランスWeb開発者</h4>
-                                    <p class="experience__company">個人事業</p>
-                                    <!-- 業務内容リスト -->
-                                    <ul class="experience__duties">
-                                        <li>小規模企業向けWebサイト制作</li>
-                                        <li>レスポンシブデザインの実装</li>
-                                        <li>SEO対策とパフォーマンス最適化</li>
-                                        <li>クライアントとの要件定義から納品まで</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- 前職：営業アシスタント -->
-                            <div class="experience__item">
-                                <div class="experience__period">2021年 - 2023年</div>
-                                <div class="experience__details">
-                                    <h4 class="experience__title">営業アシスタント</h4>
-                                    <p class="experience__company">株式会社ABC商事</p>
-                                    <!-- 業務内容リスト -->
-                                    <ul class="experience__duties">
-                                        <li>顧客データ管理とExcelでの分析</li>
-                                        <li>プレゼンテーション資料作成</li>
-                                        <li>社内システムの効率化提案</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 右側：学歴 -->
-                    <div class="experience__section">
-                        <h3 class="experience__heading">学歴</h3>
-                        <div class="experience__timeline">
-                            <!-- 大学院 -->
-                            <div class="experience__item">
-                                <div class="experience__period">2024年 - 現在</div>
-                                <div class="experience__details">
-                                    <h4 class="experience__title">京都情報大学院大学 応用情報技術研究科 在学</h4>
-                                    <p class="experience__company">人工知能専攻</p>
-                                </div>
-                            </div>
-                            <!-- 大学卒業 -->
-                            <div class="experience__item">
-                                <div class="experience__period">2017年 - 2021年</div>
-                                <div class="experience__details">
-                                    <h4 class="experience__title">東京工科大学 コンピュータサイエンス学部 卒業</h4>
-                                    <p class="experience__company">コンピュータサイエンス学科</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
+                <div class="experience__item">
+                  <div class="experience__period">2022年7月 - 2023年9月</div>
+                  <div class="experience__details">
+                    <h4 class="experience__title">
+                      ECサイトデータ翻訳、メディア記事制作
+                    </h4>
+                    <p class="experience__company">株式会社リバークレイン</p>
+                    <!-- 業務内容リスト -->
+                    <ul class="experience__duties">
+                      <li>WordPressを使用したメディア記事作成</li>
+                      <li>SNS運用(Facebook, Instagram, Pinterest)</li>
+                      <li>Gas関数を使用した自動化フロー作成</li>
+                      <li>データ翻訳(日→英)</li>
+                    </ul>
+                  </div>
                 </div>
+              </div>
             </div>
-        </section>
+            <!-- 右側：学歴 -->
+            <div class="experience__section">
+              <h3 class="experience__heading">学歴</h3>
+              <div class="experience__timeline">
+                <!-- 大学院 -->
+                <div class="experience__item">
+                  <div class="experience__period">2024年 - 現在</div>
+                  <div class="experience__details">
+                    <h4 class="experience__title">
+                      京都情報大学院大学 応用情報技術研究科 在学
+                    </h4>
+                    <p class="experience__company">人工知能専攻</p>
+                  </div>
+                </div>
+                <!-- 大学卒業 -->
+                <div class="experience__item">
+                  <div class="experience__period">2017年 - 2021年</div>
+                  <div class="experience__details">
+                    <h4 class="experience__title">
+                      東京工科大学 コンピュータサイエンス学部 卒業
+                    </h4>
+                    <p class="experience__company">
+                      コンピュータサイエンス学科
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <!-- ===== お問い合わせセクション ===== -->
-        <section id="contact" class="contact">
-            <div class="container">
-                <!-- セクションヘッダー -->
-                <div class="section__header">
-                    <h2 class="section__title">お問い合わせ</h2>
-                    <p class="section__subtitle">Contact Me</p>
+      <!-- ===== お問い合わせセクション ===== -->
+      <section id="contact" class="contact">
+        <div class="container">
+          <!-- セクションヘッダー -->
+          <div class="section__header">
+            <h2 class="section__title">お問い合わせ</h2>
+            <p class="section__subtitle">Contact Me</p>
+          </div>
+          <div class="contact__content">
+            <!-- 左側：連絡先情報 -->
+            <div class="contact__info">
+              <h3 class="contact__heading">お気軽にご連絡ください</h3>
+              <!-- 説明文 -->
+              <p class="contact__description">
+                私の人なりや話しを聞いてみたい方は、
+                どんなことでもお気軽にご連絡ください。
+              </p>
+              <!-- 連絡先詳細情報 -->
+              <div class="contact__details">
+                <!-- メールアドレス -->
+                <div class="contact__detail">
+                  <span class="contact__icon">📧</span>
+                  <div class="contact__detail-info">
+                    <h4>メール</h4>
+                    <p>jinxin10244869@gmail.com</p>
+                  </div>
                 </div>
-                <div class="contact__content">
-                    <!-- 左側：連絡先情報 -->
-                    <div class="contact__info">
-                        <h3 class="contact__heading">お気軽にご連絡ください</h3>
-                        <!-- 説明文 -->
-                        <p class="contact__description">
-                            私の人なりや話しを聞いてみたい方は、
-                            どんなことでもお気軽にご連絡ください。
-                        </p>
-                        <!-- 連絡先詳細情報 -->
-                        <div class="contact__details">
-                            <!-- メールアドレス -->
-                            <div class="contact__detail">
-                                <span class="contact__icon">📧</span>
-                                <div class="contact__detail-info">
-                                    <h4>メール</h4>
-                                    <p>jinxin10244869@gmail.com</p>
-                                </div>
-                            </div>
-                            <!-- 対応時間 -->
-                            <div class="contact__detail">
-                                <span class="contact__icon">⏰</span>
-                                <div class="contact__detail-info">
-                                    <h4>対応時間</h4>
-                                    <p>平日 18:00~</p>
-                                    <p>土日 Anytime</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 右側：お問い合わせフォーム -->
-                    <form class="contact__form" id="contact-form">
-                        <!-- 名前入力欄 -->
-                        <div class="form__group">
-                            <label for="name" class="form__label">お名前 *</label>
-                            <input type="text" id="name" name="name" class="form__input" required>
-                        </div>
-                        <!-- メールアドレス入力欄 -->
-                        <div class="form__group">
-                            <label for="email" class="form__label">メールアドレス *</label>
-                            <input type="email" id="email" name="email" class="form__input" required>
-                        </div>
-                        <!-- 件名入力欄 -->
-                        <div class="form__group">
-                            <label for="subject" class="form__label">件名 *</label>
-                            <input type="text" id="subject" name="subject" class="form__input" required>
-                        </div>
-                        <!-- メッセージ入力欄 -->
-                        <div class="form__group">
-                            <label for="message" class="form__label">メッセージ *</label>
-                            <textarea id="message" name="message" class="form__textarea" rows="5" required></textarea>
-                        </div>
-                        <!-- 送信ボタン -->
-                        <button type="submit" class="btn btn--primary btn--full">送信する</button>
-                    </form>
+                <!-- 対応時間 -->
+                <div class="contact__detail">
+                  <span class="contact__icon">⏰</span>
+                  <div class="contact__detail-info">
+                    <h4>対応時間</h4>
+                    <p>平日 18:00~</p>
+                    <p>土日 Anytime</p>
+                  </div>
                 </div>
+              </div>
             </div>
-        </section>
+            <!-- 右側：お問い合わせフォーム -->
+            <form class="contact__form" id="contact-form">
+              <!-- 名前入力欄 -->
+              <div class="form__group">
+                <label for="name" class="form__label">お名前 *</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="form__input"
+                  required
+                />
+              </div>
+              <!-- メールアドレス入力欄 -->
+              <div class="form__group">
+                <label for="email" class="form__label">メールアドレス *</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form__input"
+                  required
+                />
+              </div>
+              <!-- 件名入力欄 -->
+              <div class="form__group">
+                <label for="subject" class="form__label">件名 *</label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  class="form__input"
+                  required
+                />
+              </div>
+              <!-- メッセージ入力欄 -->
+              <div class="form__group">
+                <label for="message" class="form__label">メッセージ *</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  class="form__textarea"
+                  rows="5"
+                  required
+                ></textarea>
+              </div>
+              <!-- 送信ボタン -->
+              <button type="submit" class="btn btn--primary btn--full">
+                送信する
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- ===== フッター ===== -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer__content">
-                <!-- コピーライト表示 -->
-                <p class="footer__text">
-                    &copy; 2025 Jinxin Chen. All rights reserved.
-                </p>
-                <!-- フッターリンク -->
-                <div class="footer__links">
-                    <a href="https://github.com/jinxin4869" target="_blank" rel="noopener noreferrer" class="footer__link footer__github">
-                        <span class="footer__github-icon"><img src="assets/images/icons8-github-50.png" alt="githubアイコン"></span>
-                    </a>
-                </div>
-            </div>
+      <div class="container">
+        <div class="footer__content">
+          <!-- コピーライト表示 -->
+          <p class="footer__text">
+            &copy; 2025 Jinxin Chen. All rights reserved.
+          </p>
+          <!-- フッターリンク -->
+          <div class="footer__links">
+            <a
+              href="https://github.com/jinxin4869"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer__link footer__github"
+            >
+              <span class="footer__github-icon"
+                ><img
+                  src="assets/images/icons8-github-50.png"
+                  alt="githubアイコン"
+              /></span>
+            </a>
+          </div>
         </div>
+      </div>
     </footer>
 
     <!-- ===== スクロールトップボタン ===== -->
     <!-- ページ下部でスクロール時に表示される「トップに戻る」ボタン -->
     <button class="scroll-top" id="scroll-top">
-        <span class="scroll-top__arrow">↑</span>
+      <span class="scroll-top__arrow">↑</span>
     </button>
 
     <!-- ===== JavaScriptファイルの読み込み ===== -->
     <!-- インタラクティブな機能を提供するメインJavaScriptファイル -->
     <script src="js/script.js"></script>
-</body>
+  </body>
 </html>
