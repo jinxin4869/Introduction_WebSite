@@ -466,13 +466,14 @@ body {
     transform: translateY(-5px);       /* 上に5px浮上 */
 }
 
-/* 統計数値 */
+/* 統計数値（絵文字対応） */
 .stat__number {
     display: block;
-    font-size: var(--font-size-3xl);
+    font-size: var(--font-size-2xl);
     font-weight: 700;
     color: var(--primary-color);
     margin-bottom: var(--spacing-xs);
+    line-height: 1.2;
 }
 
 /* 統計ラベル */
@@ -969,5 +970,104 @@ body {
     /* 統計カードパディング縮小 */
     .stat {
         padding: var(--spacing-md);
+    }
+}
+
+/* ===== SKILL TAGS SYSTEM（スキルタグシステム） ===== */
+/* パーセンテージに代わるタグベースのスキル表示 */
+
+/* スキルカテゴリ */
+.skill-category {
+    margin-bottom: var(--spacing-xl);
+}
+
+/* スキルカテゴリタイトル */
+.skill-category__title {
+    font-size: var(--font-size-lg);
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    position: relative;
+}
+
+/* カテゴリタイトルの下線装飾 */
+.skill-category__title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: var(--primary-color);
+    border-radius: var(--radius-sm);
+}
+
+/* スキルタグコンテナ */
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+/* 基本スキルタグスタイル */
+.skill-tag {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-xl);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    transition: all var(--transition-base);
+    cursor: default;
+    border: 2px solid transparent;
+}
+
+/* 学習中言語のスタイル */
+.skill-tag--learning {
+    background: linear-gradient(135deg, var(--primary-light), var(--secondary-color));
+    color: var(--white);
+    box-shadow: 0 2px 10px var(--shadow-light);
+}
+
+.skill-tag--learning:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px var(--shadow-medium);
+}
+
+/* フレームワークのスタイル */
+.skill-tag--framework {
+    background: var(--white);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 2px 10px var(--shadow-light);
+}
+
+.skill-tag--framework:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+/* ツール・その他のスタイル */
+.skill-tag--tool {
+    background: var(--bg-accent);
+    color: var(--text-primary);
+    border: 2px solid var(--accent-color);
+}
+
+.skill-tag--tool:hover {
+    background: var(--accent-color);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+/* レスポンシブ対応：タブレット以下 */
+@media (max-width: 768px) {
+    .skill-tags {
+        justify-content: center;
+    }
+    
+    .skill-tag {
+        font-size: var(--font-size-xs);
+        padding: 0.4rem 0.8rem;
     }
 }
