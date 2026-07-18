@@ -16,30 +16,31 @@ html {
 body {
     font-family: 'Noto Sans JP', sans-serif; /* 日本語対応フォント */
     line-height: 1.6;                        /* 読みやすい行間 */
-    color: #5a4037;                          /* メインテキストカラー（ダークブラウン） */
-    background-color: #fdf8f5;               /* 背景色（ベージュホワイト） */
+    color: #1c1f22;                          /* メインテキストカラー（墨色） */
+    background-color: #f5f1e6;               /* 背景色（和紙色） */
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="matrix" values="0 0 0 0 0.1  0 0 0 0 0.1  0 0 0 0 0.1  0 0 0 0.02 0"/></filter><rect width="100%25" height="100%25" filter="url(%23n)"/></svg>');
     overflow-x: hidden;                      /* 横スクロールを防止 */
 }
 
 /* ===== CSS VARIABLES（カスタムプロパティ） ===== */
 /* サイト全体で使用する色、サイズ、間隔などの変数定義 */
 :root {
-    /* ===== Colors - 柔らかい暖色パレット ===== */
-    --primary-color: #ff8a65;          /* メインカラー：コーラルオレンジ */
-    --primary-light: #ffab91;          /* ライトバージョン：ライトコーラル */
-    --primary-dark: #f4511e;           /* ダークバージョン：ダークオレンジ */
-    --secondary-color: #ffcc80;        /* セカンダリカラー：ソフトオレンジ */
-    --accent-color: #ffb74d;           /* アクセントカラー：アンバー */
-    --text-primary: #5a4037;           /* プライマリテキスト：ダークブラウン */
-    --text-secondary: #8d6e63;         /* セカンダリテキスト：ミディアムブラウン */
-    --text-light: #a1887f;             /* ライトテキスト：ライトブラウン */
-    --bg-primary: #fdf8f5;             /* メイン背景色：ベージュホワイト */
-    --bg-secondary: #fff3e0;           /* セカンダリ背景色：ライトピーチ */
-    --bg-accent: #fce4ec;              /* アクセント背景色：ソフトピンク */
-    --white: #ffffff;                  /* 純白 */
-    --shadow-light: rgba(255, 138, 101, 0.1);   /* 軽いシャドウ */
-    --shadow-medium: rgba(255, 138, 101, 0.2);  /* ミディアムシャドウ */
-    --shadow-dark: rgba(90, 64, 55, 0.1);       /* ダークシャドウ */
+    /* ===== Colors - 水墨（墨・和紙・朱）パレット ===== */
+    --primary-color: #b3402c;          /* メインカラー：朱色（落款） */
+    --primary-light: #c96a52;          /* ライトバージョン：淡い朱 */
+    --primary-dark: #8a2f1f;           /* ダークバージョン：深い朱 */
+    --secondary-color: #6b7680;        /* セカンダリカラー：石色 */
+    --accent-color: #55606b;          /* アクセントカラー：濃い石色 */
+    --text-primary: #1c1f22;           /* プライマリテキスト：墨色 */
+    --text-secondary: #4b5157;         /* セカンダリテキスト：淡墨 */
+    --text-light: #7c8288;             /* ライトテキスト：石灰色 */
+    --bg-primary: #f5f1e6;             /* メイン背景色：和紙色 */
+    --bg-secondary: #ece4d1;           /* セカンダリ背景色：古紙色 */
+    --bg-accent: #efe9da;              /* アクセント背景色：淡い古紙色 */
+    --white: #faf7f0;                  /* 紙白（純白ではなく和紙寄り） */
+    --shadow-light: rgba(28, 31, 34, 0.06);    /* 軽いシャドウ */
+    --shadow-medium: rgba(28, 31, 34, 0.12);   /* ミディアムシャドウ */
+    --shadow-dark: rgba(28, 31, 34, 0.18);     /* ダークシャドウ */
     
     /* ===== Typography（フォントサイズ） ===== */
     --font-size-xs: 0.75rem;      /* 12px - 極小 */
@@ -62,11 +63,12 @@ body {
     --spacing-3xl: 6rem;          /* 96px - 3倍間隔 */
     
     /* ===== Border Radius（角丸） ===== */
-    --radius-sm: 0.375rem;        /* 6px - 小角丸 */
-    --radius-md: 0.5rem;          /* 8px - 中角丸 */
-    --radius-lg: 0.75rem;         /* 12px - 大角丸 */
-    --radius-xl: 1rem;            /* 16px - 特大角丸 */
-    --radius-full: 50%;           /* 完全な円形 */
+    /* 水墨の意匠に合わせ、角丸は最小限に留める */
+    --radius-sm: 0.125rem;        /* 2px */
+    --radius-md: 0.1875rem;       /* 3px */
+    --radius-lg: 0.25rem;         /* 4px */
+    --radius-xl: 0.25rem;         /* 4px */
+    --radius-full: 50%;           /* 完全な円形（アバター等に限定使用） */
     
     /* ===== Transitions（アニメーション時間） ===== */
     --transition-fast: 0.15s ease-in-out;    /* 高速トランジション */
@@ -76,6 +78,15 @@ body {
     /* ===== Container（コンテナ設定） ===== */
     --container-max-width: 1200px;    /* コンテナ最大幅 */
     --container-padding: 1rem;        /* コンテナ左右パディング */
+}
+
+/* ===== HEADINGS（見出し用フォント） ===== */
+/* 筆致のある明朝系フォントで見出しに墨の勢いを持たせる */
+h1, h2, h3, h4,
+.nav__logo-link {
+    font-family: 'Yuji Syuku', 'Noto Serif JP', serif;
+    font-weight: 400;
+    letter-spacing: 0.02em;
 }
 
 /* ===== UTILITY CLASSES（汎用クラス） ===== */
@@ -107,7 +118,7 @@ body {
 
 /* プライマリボタン（メインアクション用） */
 .btn--primary {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    background: var(--primary-color);
     color: var(--white);
     box-shadow: 0 4px 15px var(--shadow-light);
 }
@@ -167,11 +178,11 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(253, 248, 245, 0.95);     /* 半透明背景 */
+    background: rgba(245, 241, 230, 0.95);     /* 半透明の和紙背景 */
     backdrop-filter: blur(10px);               /* ぼかし効果 */
     z-index: 1000;                             /* 最前面表示 */
     transition: all var(--transition-base);
-    border-bottom: 1px solid rgba(255, 138, 101, 0.1);
+    border-bottom: 1px solid rgba(28, 31, 34, 0.08);
 }
 
 /* ナビゲーションコンテナ */
@@ -246,12 +257,12 @@ body {
     min-height: 100vh;                  /* 画面全体の高さ */
     display: flex;
     align-items: center;                /* 垂直中央揃え */
-    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    background: var(--bg-primary);
     position: relative;
     overflow: hidden;                   /* はみ出し非表示 */
 }
 
-/* 背景装飾パターン */
+/* 背景装飾パターン（墨の飛沫を淡く） */
 .hero::before {
     content: '';
     position: absolute;
@@ -259,8 +270,8 @@ body {
     right: 0;
     width: 50%;
     height: 100%;
-    /* SVGパターンで装飾的な円を配置 */
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23ffab91" opacity="0.3"/><circle cx="80" cy="40" r="3" fill="%23ff8a65" opacity="0.2"/><circle cx="40" cy="80" r="1.5" fill="%23ffcc80" opacity="0.4"/></svg>');
+    /* SVGパターンで淡い墨の飛沫を配置 */
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%231c1f22" opacity="0.06"/><circle cx="80" cy="40" r="3" fill="%231c1f22" opacity="0.05"/><circle cx="40" cy="80" r="1.5" fill="%23b3402c" opacity="0.08"/></svg>');
     pointer-events: none;               /* クリックイベントを無効化 */
 }
 
@@ -333,11 +344,12 @@ body {
     align-items: center;
 }
 
-/* プロフィール画像プレースホルダー */
+/* プロフィール画像プレースホルダー（円相＝一筆書きの円をイメージした輪郭） */
 .hero__image-placeholder {
     width: 300px;
     height: 300px;
-    background: linear-gradient(135deg, var(--primary-light), var(--secondary-color));
+    background: radial-gradient(circle, var(--bg-secondary) 0%, var(--bg-primary) 72%);
+    border: 2px solid rgba(28, 31, 34, 0.18);
     border-radius: var(--radius-full);  /* 完全な円形 */
     display: flex;
     align-items: center;
@@ -1021,16 +1033,16 @@ body {
     border: 2px solid transparent;
 }
 
-/* 学習中言語のスタイル */
-.skill-tag--learning {
-    background: linear-gradient(135deg, var(--primary-light), var(--secondary-color));
-    color: var(--white);
-    box-shadow: 0 2px 10px var(--shadow-light);
+/* 使用言語のスタイル */
+.skill-tag--core {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 2px solid rgba(28, 31, 34, 0.15);
 }
 
-.skill-tag--learning:hover {
+.skill-tag--core:hover {
+    border-color: var(--primary-color);
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px var(--shadow-medium);
 }
 
 /* フレームワークのスタイル */

@@ -260,10 +260,10 @@ function showNotification(message, type = 'info') {
 function handleHeaderScroll() {
     const header = document.querySelector('.header');
     if (window.scrollY > 50) {  // 50px以上スクロールした場合
-        header.style.background = 'rgba(253, 248, 245, 0.98)';     // 背景を濃く
-        header.style.boxShadow = '0 2px 20px rgba(255, 138, 101, 0.1)'; // シャドウ追加
+        header.style.background = 'rgba(245, 241, 230, 0.98)';     // 背景を濃く
+        header.style.boxShadow = '0 2px 20px rgba(28, 31, 34, 0.08)'; // シャドウ追加
     } else {
-        header.style.background = 'rgba(253, 248, 245, 0.95)';     // 背景を薄く
+        header.style.background = 'rgba(245, 241, 230, 0.95)';     // 背景を薄く
         header.style.boxShadow = 'none';                           // シャドウなし
     }
 }
@@ -276,7 +276,7 @@ function initTypingAnimation() {
     
     const text = typingElement.textContent;  // 元のテキストを取得
     typingElement.textContent = '';          // テキストをクリア
-    typingElement.style.borderRight = '2px solid #ff8a65'; // カーソル効果
+    typingElement.style.borderRight = '2px solid #b3402c'; // カーソル効果（朱色）
     
     let i = 0;
     const typeWriter = () => {
@@ -302,6 +302,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // 初期化関数の実行
     createObserver();        // 交差監視オブザーバー初期化
     initTypingAnimation();   // タイピングアニメーション初期化
+
+    // フッターの著作権表示年を自動更新
+    const footerYear = document.getElementById('footer-year');
+    if (footerYear) {
+        footerYear.textContent = new Date().getFullYear();
+    }
     
     // ===== ナビゲーション関連イベント =====
     // ハンバーガーメニューボタンのクリックイベント
@@ -430,9 +436,9 @@ contactForm.addEventListener('submit', () => {
 // ===== CONSOLE MESSAGE（コンソールメッセージ） =====
 // 開発者向けの情報表示
 console.log(`
-🎨 ポートフォリオサイト by 田中太郎
-📧 お問い合わせ: taro.tanaka@example.com
+🎨 ポートフォリオサイト by 陳 錦鑫 (Jinxin Chen)
+📧 お問い合わせ: jinxin10244869@gmail.com
 🚀 Built with HTML, CSS, and JavaScript
 
-Thanks for visiting! 
+Thanks for visiting!
 `);

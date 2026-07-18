@@ -10,16 +10,16 @@
     <!-- SEO対策のためのページ説明文 -->
     <meta
       name="description"
-      content="田中太郎のポートフォリオサイト。Web開発者としての経歴、スキル、プロジェクトをご紹介します。"
+      content="陳 錦鑫（Jinxin Chen）のポートフォリオサイト。Webエンジニアとしての経歴、スキル、プロジェクトをご紹介します。"
     />
     <!-- メインCSSファイルの読み込み -->
     <link rel="stylesheet" href="css/style.css" />
     <!-- Google Fontsの事前接続（パフォーマンス向上） -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- 日本語フォント「Noto Sans JP」の読み込み -->
+    <!-- 日本語フォント「Noto Sans JP」（本文）と「Yuji Syuku」（見出し・筆致）の読み込み -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Yuji+Syuku&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -81,12 +81,12 @@
               </h1>
               <!-- 職業・肩書き -->
               <h2 class="hero__subtitle">
-                フルスタックエンジニアを目指しています。
+                Webエンジニアとして働いています。
               </h2>
               <!-- 自己紹介文 -->
               <p class="hero__description">
-                実務未経験からのスタートですが、日々学習し成長し続けています。
-                モダンな技術を学びながら、ユーザー体験を重視したWebアプリケーション開発に取り組んでいます。
+                現在は株式会社Xincereで、Ruby on RailsからNext.js／TypeScriptへの移行プロジェクトに携わっています。
+                日々学び続けながら、ユーザー体験を重視したWebアプリケーション開発に取り組んでいます。
               </p>
               <!-- CTA（Call To Action）ボタン -->
               <div class="hero__buttons">
@@ -125,10 +125,10 @@
               <h3 class="about__heading">プロフィール</h3>
               <!-- 自己紹介文 -->
               <p class="about__description">
-                まだ経験は浅いですが、身の回りの小さな不便を解消するツールを作ったり、
-                効率化のためのスクリプトを書いたりすることから始めています。
-                「こんなものがあったら便利だな」というアイデアを形にできる技術力を身につけ、
-                多くの人に価値を提供できるエンジニアになることが目標です。
+                身の回りの小さな不便を解消するツールを作ったり、効率化のためのスクリプトを書いたりすることから始め、
+                現在は株式会社Xincereでエンジニアとして、稼働中のプロダクトの開発に携わっています。
+                「こんなものがあったら便利だな」というアイデアを形にできる技術力を磨きながら、
+                多くの人に価値を提供できるエンジニアになることを目指しています。
               </p>
               <!-- 基本情報リスト -->
               <div class="about__info">
@@ -154,7 +154,7 @@
             <div class="about__stats">
               <!-- 技術スタック -->
               <div class="stat">
-                <span class="stat__number">⚙️ 5つ</span>
+                <span class="stat__number">⚙️ 6つ</span>
                 <span class="stat__label">技術スタック</span>
               </div>
               <!-- GitHub活動 -->
@@ -164,8 +164,8 @@
               </div>
               <!-- 実務経験 -->
               <div class="stat">
-                <span class="stat__number">📊 在職での実務</span>
-                <span class="stat__label">AWS運用保守</span>
+                <span class="stat__number">📊 2年</span>
+                <span class="stat__label">実務経験（インフラ運用 → Web開発）</span>
               </div>
             </div>
           </div>
@@ -221,9 +221,10 @@
               <div class="skill-category">
                 <h4 class="skill-category__title">使用言語</h4>
                 <div class="skill-tags">
-                  <span class="skill-tag skill-tag--learning">HTML/CSS (習得中)</span>
-                  <span class="skill-tag skill-tag--learning">Ruby (習得中)</span>
-                  <span class="skill-tag skill-tag--learning">JavaScript (習得中)</span>
+                  <span class="skill-tag skill-tag--core">TypeScript</span>
+                  <span class="skill-tag skill-tag--core">Ruby</span>
+                  <span class="skill-tag skill-tag--core">JavaScript</span>
+                  <span class="skill-tag skill-tag--core">HTML/CSS</span>
                 </div>
               </div>
 
@@ -242,6 +243,7 @@
                 <div class="skill-tags">
                   <span class="skill-tag skill-tag--tool">Git/GitHub</span>
                   <span class="skill-tag skill-tag--tool">Docker</span>
+                  <span class="skill-tag skill-tag--tool">AWS（前職で運用経験）</span>
                 </div>
               </div>
             </div>
@@ -263,7 +265,19 @@
               <h3 class="experience__heading">職歴</h3>
               <div class="experience__timeline">
                 <div class="experience__item">
-                  <div class="experience__period">2024年6月 - 現在</div>
+                  <div class="experience__period">2025年10月 - 現在</div>
+                  <div class="experience__details">
+                    <h4 class="experience__title">Webエンジニア</h4>
+                    <p class="experience__company">株式会社Xincere</p>
+                    <!-- 業務内容リスト -->
+                    <ul class="experience__duties">
+                      <li>稼働中のRuby on Railsプロダクトを、Next.js + TypeScript構成へ移行するプロジェクトに参画</li>
+                      <li>レガシーシステムのモダナイゼーションを担当</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="experience__item">
+                  <div class="experience__period">2024年6月 - 2025年9月</div>
                   <div class="experience__details">
                     <h4 class="experience__title">車両運動性能実験</h4>
                     <p class="experience__company">株式会社エクステック</p>
@@ -426,7 +440,7 @@
         <div class="footer__content">
           <!-- コピーライト表示 -->
           <p class="footer__text">
-            &copy; 2025 Jinxin Chen. All rights reserved.
+            &copy; <span id="footer-year">2026</span> Jinxin Chen. All rights reserved.
           </p>
           <!-- フッターリンク -->
           <div class="footer__links">
