@@ -1083,3 +1083,107 @@ h1, h2, h3, h4,
         padding: 0.4rem 0.8rem;
     }
 }
+
+/* ===== INK MOTIFS（水墨モチーフ：ヒーロー以外の各セクション） ===== */
+/* すべてCSS/SVGのみで完結し、JS・WebGL不要（負荷ゼロ）。
+   ヒーローが主役の一枚絵、他セクションは余白・落款・にじみで世界観を揃える役割。 */
+
+/* 各セクションを装飾の基準に。にじみ・落款がはみ出しても横スクロールさせない */
+.about,
+.skills,
+.experience,
+.contact {
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- 1. 見出し下の一筆罫線（section__title の直下に短い筆ストローク）--- */
+.section__title::after {
+    content: '';
+    display: block;
+    width: 140px;
+    height: 16px;
+    margin: var(--spacing-sm) auto 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 18"><path d="M4,9 C60,3 130,5 196,8 C140,15 60,13 4,9 Z" fill="%231c1f22"/></svg>') no-repeat center / contain;
+    opacity: 0.85;
+}
+
+/* --- 2. セクション区切りの筆ストローク（見出しの上に細く長い墨線）--- */
+.section__header {
+    position: relative;
+}
+.section__header::before {
+    content: '';
+    display: block;
+    width: 260px;
+    height: 12px;
+    margin: 0 auto var(--spacing-lg);
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 12"><path d="M4,7 C80,3 150,9 220,5 C255,3 280,7 296,6 C280,9 255,6 220,8 C150,11 80,6 4,7 Z" fill="%231c1f22"/></svg>') no-repeat center / contain;
+    opacity: 0.5;
+}
+
+/* --- 3. 淡い墨のにじみアクセント（セクション隅に静止のにじみ）--- */
+/* 共通のにじみ（feTurbulenceで不規則な輪郭の墨だまり）を、セクションごとに違う隅へ配置 */
+.about::after,
+.skills::after,
+.experience::after,
+.contact::after {
+    content: '';
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><filter id="ib"><feTurbulence type="fractalNoise" baseFrequency="0.014" numOctaves="3" seed="11"/><feDisplacementMap in="SourceGraphic" scale="70"/></filter><circle cx="200" cy="200" r="120" fill="%231c1f22" filter="url(%23ib)"/></svg>') no-repeat center / contain;
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 0;
+}
+/* 隅を交互に振って単調さを避ける */
+.about::after     { bottom: -120px; left: -90px; }
+.skills::after    { top: -120px;    right: -90px; }
+.experience::after{ bottom: -120px; right: -90px; }
+.contact::after   { top: -120px;    left: -90px; }
+
+/* にじみより前面にコンテンツを出す */
+.about .container,
+.skills .container,
+.experience .container,
+.contact .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* --- 4. 落款（朱印）：各セクション右上に手押し風の印章 --- */
+.seal {
+    position: absolute;
+    top: var(--spacing-lg);
+    right: var(--spacing-lg);
+    width: 52px;
+    height: 52px;
+    transform: rotate(-4deg);          /* 手で押したような微妙な傾き */
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: 1;
+}
+.seal__char {
+    font-family: 'Yuji Syuku', serif;
+}
+
+/* --- レスポンシブ：狭い画面では装飾を控えめに/非表示に --- */
+@media (max-width: 768px) {
+    .seal {
+        width: 40px;
+        height: 40px;
+        top: var(--spacing-md);
+        right: var(--spacing-md);
+    }
+    .about::after,
+    .skills::after,
+    .experience::after,
+    .contact::after {
+        width: 240px;
+        height: 240px;
+    }
+    .section__header::before {
+        width: 180px;
+    }
+}
