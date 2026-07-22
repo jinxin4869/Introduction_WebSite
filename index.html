@@ -69,6 +69,9 @@
     <main class="main">
       <!-- ===== ヒーローセクション（トップページ） ===== -->
       <section id="home" class="hero">
+        <!-- 水墨インク背景（three.js / WebGL）。非対応・低スペック環境ではJS側で起動せず、
+             CSSの静止背景がそのまま見える。装飾目的のためスクリーンリーダーからは隠す。 -->
+        <canvas id="hero-ink" class="hero__ink" aria-hidden="true"></canvas>
         <div class="hero__container">
           <div class="hero__content">
             <!-- 左側：テキストコンテンツ -->
@@ -470,5 +473,16 @@
     <!-- ===== JavaScriptファイルの読み込み ===== -->
     <!-- インタラクティブな機能を提供するメインJavaScriptファイル -->
     <script src="js/script.js"></script>
+
+    <!-- three.js を CDN から ES モジュールとして読み込む（バンドラー不要） -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+        }
+      }
+    </script>
+    <!-- ヒーロー背景の水墨インク表現（フェーズ1〜2の最小スパイク） -->
+    <script type="module" src="js/ink-background.js"></script>
   </body>
 </html>
