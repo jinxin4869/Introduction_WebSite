@@ -69,8 +69,11 @@
     <main class="main">
       <!-- ===== ヒーローセクション（トップページ） ===== -->
       <section id="home" class="hero">
+        <!-- 静止インク（フォールバック）。WebGLが動かない環境（モバイル・省データ等）でも
+             水墨のヒーローに見せるためのCSS/SVG背景。WebGL起動時はJSが .ink-live を付けて隠す。 -->
+        <div class="hero__ink-fallback" aria-hidden="true"></div>
         <!-- 水墨インク背景（three.js / WebGL）。非対応・低スペック環境ではJS側で起動せず、
-             CSSの静止背景がそのまま見える。装飾目的のためスクリーンリーダーからは隠す。 -->
+             上の静止インクがそのまま見える。装飾目的のためスクリーンリーダーからは隠す。 -->
         <canvas id="hero-ink" class="hero__ink" aria-hidden="true"></canvas>
         <div class="hero__container">
           <div class="hero__content">
