@@ -112,11 +112,28 @@ function initInkBackground(canvas, hero) {
             void main() {
                 // アスペクト比を補正した座標（にじみが縦横で歪まないように）
                 float aspect = u_resolution.x / u_resolution.y;
-                vec2 uv = v_uv;
-                vec2 auv = vec2(uv.x * aspect, uv.y);
+                vec2 auv = vec2(v_uv.x * aspect, v_uv.y);
 
-                // 紙のかすかな地合い（完全な平面にしない）
-                float paperGrain = fbm(uv * 3.0 + u_time * 0.02);
+                // --- ドメインワーピング ---
+                // 座標そのものをノイズでゆがめてから距離を測ることで、
+                // 真円ではなく墨が繊維に染み込むような不規則（かすれ・毛羽立ち）な輪郭にする。
+                vec2 warp = vec2(
+                    fbm(auv * 3.0 + u_time * 0.03),
+                    fbm(auv * 3.0 + vec2(7.3, 2.1) - u_time * 0.025)
+                ) - 0.5;
+                vec2 suv = auv + warp * 0.07;
+
+                // 紙のかすかな地合い
+                float paperGrain = fbm(auv * 4.0 + u_time * 0.02);
+
+                // --- 常時ゆっくり漂う墨（アンビエント）---
+                // マウスを動かさなくても、墨のもやが流れ続ける（＝いつでも動きが見える）。
+                // 左カラムの文字の可読性を守るため、右側（プロフィール画像側）ほど濃く、
+                // 左側（テキスト側）は薄く残す横方向マスクをかける。
+                float ambField = fbm(suv * 1.4 + vec2(u_time * 0.06, u_time * 0.04));
+                float amb = smoothstep(0.40, 0.76, ambField);
+                float sideMask = 0.30 + 0.70 * smoothstep(0.28, 0.70, v_uv.x);
+                float ambient = amb * 0.30 * sideMask;
 
                 float ink = 0.0;
                 float core = 0.0; // にじみの芯（朱を差す量）
@@ -128,33 +145,35 @@ function initInkBackground(canvas, hero) {
                     if (age < 0.0 || age > u_lifetime) continue;
 
                     // 時間とともに減速しながら広がる半径
-                    float radius = sqrt(age) * 0.16;
+                    float radius = sqrt(age) * 0.17;
                     // 寿命に沿ってフェード（イーズアウト）
                     float life = 1.0 - age / u_lifetime;
                     life = life * life;
 
                     vec2 dp = vec2(d.x * aspect, d.y);
-                    float dist = distance(auv, dp);
+                    // ワープした座標で距離をとる → 縁が繊維状ににじむ
+                    float dist = distance(suv, dp);
 
-                    // ノイズで輪郭を不規則に（墨のにじみ感）
-                    float wobble = fbm(auv * 6.0 + d.w * 10.0 + u_time * 0.05);
-                    float edge = radius * (0.65 + 0.7 * wobble);
+                    // 細かいノイズで縁をさらに毛羽立たせる（毛細管現象の風合い）
+                    float fib = fbm(auv * 9.0 + d.w * 13.0);
+                    float edge = radius * (0.6 + 0.6 * fib);
 
-                    float a = smoothstep(edge, edge * 0.35, dist) * life;
+                    float a = smoothstep(edge, edge * 0.3, dist) * life;
                     ink += a;
-                    core += smoothstep(edge * 0.5, 0.0, dist) * life;
+                    core += smoothstep(edge * 0.45, 0.0, dist) * life;
                 }
 
-                ink = clamp(ink, 0.0, 1.0);
+                // アンビエントと墨だまりを合算
+                ink = clamp(ink + ambient, 0.0, 1.0);
                 // にじみの縁を紙のかすれで少しだけ削る
-                ink *= 0.85 + 0.15 * paperGrain;
+                ink *= 0.8 + 0.2 * paperGrain;
 
                 // 紙 → 墨 の混色。芯にほんのり朱を差す。
                 vec3 col = mix(u_paper, u_ink, ink);
-                col = mix(col, u_accent, clamp(core, 0.0, 1.0) * 0.12);
+                col = mix(col, u_accent, clamp(core, 0.0, 1.0) * 0.10);
 
                 // 背景の和紙部分は透過させ、墨がのった所ほど不透明に
-                float alpha = ink * 0.9;
+                float alpha = ink * 0.92;
                 gl_FragColor = vec4(col, alpha);
             }
         `,
