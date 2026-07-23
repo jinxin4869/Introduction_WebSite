@@ -275,6 +275,25 @@ h1, h2, h3, h4,
     pointer-events: none;               /* クリックイベントを無効化 */
 }
 
+/* 静止インク（フォールバック）: WebGLが動かない環境でも水墨のヒーローに見せる。
+   右側（プロフィール画像側）に淡い墨のにじみを配置し、ライブのアンビエントと近い印象にする。 */
+.hero__ink-fallback {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.16;
+    transition: opacity 1s ease;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency="0.008" numOctaves="4" seed="5"/><feDisplacementMap in="SourceGraphic" scale="120"/></filter><g filter="url(%23f)"><circle cx="540" cy="300" r="170" fill="%231c1f22" opacity="0.55"/><circle cx="620" cy="450" r="120" fill="%231c1f22" opacity="0.4"/></g></svg>') no-repeat;
+    background-position: 78% 42%;
+    background-size: 60% auto;
+}
+
+/* WebGLが起動したら静止インクは隠し、canvasのライブ表現に委ねる */
+.hero.ink-live .hero__ink-fallback {
+    opacity: 0;
+}
+
 /* 水墨インク背景キャンバス（ヒーロー全面に敷き、コンテンツの背面に配置） */
 .hero__ink {
     position: absolute;

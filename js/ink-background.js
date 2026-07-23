@@ -7,21 +7,31 @@
 import * as THREE from 'three';
 
 // ---- 起動可否の判定（フォールバック方針）----------------------------------
-// prefers-reduced-motion / タッチ主体・低スペック環境 / 小画面ではWebGLを起動しない。
-// 起動しない場合、canvasは opacity:0 のまま。CSSの静止背景がそのまま見える。
+// 以下のいずれかに当てはまる環境ではWebGLを起動しない。
+//   - prefers-reduced-motion（視差効果を減らす設定）
+//   - タッチ主体（スマホ・タブレット）／小画面
+//   - 省データモード（Save-Data）／搭載メモリが少ない端末
+// 起動しない場合、canvasは opacity:0 のまま。代わりにCSSの静止インク（.hero__ink-fallback）が見える。
+const conn = navigator.connection || {};
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
 const isSmallViewport = window.innerWidth < 768;
+const isSaveData = conn.saveData === true;
+const isLowMemory = typeof navigator.deviceMemory === 'number' && navigator.deviceMemory <= 2;
 
 const canvas = document.getElementById('hero-ink');
 const hero = document.getElementById('home');
 
-if (canvas && hero && !prefersReducedMotion && !isCoarsePointer && !isSmallViewport) {
+if (
+    canvas && hero &&
+    !prefersReducedMotion && !isCoarsePointer && !isSmallViewport &&
+    !isSaveData && !isLowMemory
+) {
     try {
         initInkBackground(canvas, hero);
     } catch (err) {
-        // WebGL非対応やコンテキスト生成失敗時は静かに諦める（静止背景にフォールバック）
-        console.warn('[ink-background] WebGL初期化に失敗したため静止背景で表示します:', err);
+        // WebGL非対応やコンテキスト生成失敗時は静かに諦める（静止インクにフォールバック）
+        console.warn('[ink-background] WebGL初期化に失敗したため静止インクで表示します:', err);
     }
 }
 
@@ -230,23 +240,30 @@ function initInkBackground(canvas, hero) {
     });
 
     // ---- 描画ループ --------------------------------------------------------
+    // 背景装飾なので30fpsで十分。フルレート(60fps)からGPU負荷・消費電力を約半減させる。
+    const FRAME_INTERVAL = 1000 / 30;
     let running = false;
+    let lastFrame = 0;
 
     function tick() {
         if (running) return;
         running = true;
         requestAnimationFrame(frame);
     }
-    function frame() {
+    function frame(now) {
         if (!isVisible || document.visibilityState !== 'visible') {
             running = false; // 見えていない間は回さない
             return;
         }
+        requestAnimationFrame(frame);
+        // 30fpsに間引く（前フレームから一定時間経つまでは描画しない）
+        if (now - lastFrame < FRAME_INTERVAL) return;
+        lastFrame = now;
         uniforms.u_time.value = clock.getElapsedTime();
         renderer.render(scene, camera);
-        requestAnimationFrame(frame);
     }
 
-    canvas.classList.add('is-active'); // CSS側でフェードイン
+    canvas.classList.add('is-active');  // CSS側でcanvasをフェードイン
+    hero.classList.add('ink-live');     // 静止インクのフォールバックを隠す
     tick();
 }
