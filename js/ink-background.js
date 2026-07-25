@@ -38,6 +38,7 @@ if (
 function initInkBackground(canvas, hero) {
     const MAX_DROPS = 16;      // 同時に保持する墨だまりの最大数
     const DROP_LIFETIME = 4.5; // 1滴が消えるまでの秒数
+    const AMBIENT_STRENGTH = 0.30; // 常時漂う墨の濃さ（唯一の調整ノブ。0で無効、濃くするほど大きく）
 
     const renderer = new THREE.WebGLRenderer({
         canvas,
@@ -57,14 +58,23 @@ function initInkBackground(canvas, hero) {
         drops.push(new THREE.Vector4(0, 0, -1, 0));
     }
 
+    // 色はCSSのカスタムプロパティ（水墨パレット）を唯一の情報源とする。
+    // style.css 側でトークンを変えれば、インク背景の色も自動で追従する。
+    const rootStyles = getComputedStyle(document.documentElement);
+    const cssColor = (name, fallback) => {
+        const v = rootStyles.getPropertyValue(name).trim();
+        return new THREE.Color(v || fallback);
+    };
+
     const uniforms = {
         u_time: { value: 0 },
         u_resolution: { value: new THREE.Vector2(1, 1) },
         u_drops: { value: drops },
         u_lifetime: { value: DROP_LIFETIME },
-        u_paper: { value: new THREE.Color(0xf5f1e6) }, // 和紙色
-        u_ink: { value: new THREE.Color(0x1c1f22) },   // 墨色
-        u_accent: { value: new THREE.Color(0xb3402c) }, // 朱色（にじみの芯にほのかに）
+        u_paper: { value: cssColor('--bg-primary', '#f5f1e6') },     // 和紙色
+        u_ink: { value: cssColor('--text-primary', '#1c1f22') },     // 墨色
+        u_accent: { value: cssColor('--primary-color', '#b3402c') }, // 朱色（にじみの芯にほのかに）
+        u_ambient: { value: AMBIENT_STRENGTH },
     };
 
     const material = new THREE.ShaderMaterial({
@@ -91,6 +101,7 @@ function initInkBackground(canvas, hero) {
             uniform vec3  u_paper;
             uniform vec3  u_ink;
             uniform vec3  u_accent;
+            uniform float u_ambient;
 
             // --- 値ノイズ + FBM（にじみの不規則な輪郭を作る）---
             float hash(vec2 p) {
@@ -143,7 +154,7 @@ function initInkBackground(canvas, hero) {
                 float ambField = fbm(suv * 1.4 + vec2(u_time * 0.06, u_time * 0.04));
                 float amb = smoothstep(0.40, 0.76, ambField);
                 float sideMask = 0.30 + 0.70 * smoothstep(0.28, 0.70, v_uv.x);
-                float ambient = amb * 0.30 * sideMask;
+                float ambient = amb * u_ambient * sideMask;
 
                 float ink = 0.0;
                 float core = 0.0; // にじみの芯（朱を差す量）
