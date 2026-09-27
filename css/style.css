@@ -929,6 +929,29 @@ h1, h2, h3, h4,
     stroke-linejoin: round;
 }
 
+/* ===== BROWSER SURFACES（選択・フォーカス・キャレット） ===== */
+::selection {
+    background: rgba(179, 64, 44, 0.18);   /* 朱を薄く */
+    color: var(--text-primary);
+}
+:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 3px;
+}
+input, textarea {
+    caret-color: var(--primary-color);
+}
+
+/* ===== REDUCED MOTION（動きを減らす設定） ===== */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
 /* ===== MEDIA QUERIES（レスポンシブデザイン） ===== */
 /* タブレット以下（768px以下）のスタイル */
 @media (max-width: 768px) {
@@ -1153,28 +1176,5 @@ h1, h2, h3, h4,
     }
     .section__header::before {
         width: 180px;
-    }
-}
-
-/* ===== BROWSER SURFACES（選択・フォーカス・キャレット） ===== */
-::selection {
-    background: rgba(179, 64, 44, 0.18);   /* 朱を薄く */
-    color: var(--text-primary);
-}
-:focus-visible {
-    outline: 2px solid var(--primary-color);
-    outline-offset: 3px;
-}
-input, textarea {
-    caret-color: var(--primary-color);
-}
-
-/* ===== REDUCED MOTION（動きを減らす設定） ===== */
-@media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
     }
 }
