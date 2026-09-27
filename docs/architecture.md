@@ -21,7 +21,7 @@
 |---|---|
 | `index.html` | 内容の唯一の置き場所。文言・経歴を変えるときはここだけを編集する |
 | `css/style.css` | `:root` のカスタムプロパティが色・文字サイズ・余白・角丸の唯一の情報源。BEM 命名 |
-| `js/script.js` | DOM 操作。モバイルナビ開閉、スムーススクロール、アクティブリンク、フェードイン（IntersectionObserver）、フォームの検証と模擬送信、通知、タイピング演出、フッターの年表示 |
+| `js/script.js` | DOM 操作。モバイルナビ開閉、スムーススクロール（ページ内リンク全般）、アクティブリンク、フェードイン（IntersectionObserver）、フォームから `mailto:` への変換、タイピング演出、フッターの年表示。演出は `prefers-reduced-motion` のとき止める |
 | `js/ink-background.js` | three.js で全画面クアッドを描き、フラグメントシェーダーで墨のにじみを表現する |
 
 ## 水墨インク背景（`ink-background.js`）
@@ -35,19 +35,15 @@
 ## イベントの流れ（`script.js`）
 
 - `DOMContentLoaded` でフェードイン監視、タイピング演出、各リスナーを登録する。
-- `scroll`（間引きなし）：トップへ戻るボタン、アクティブリンク、`animateSkillBars`、ヘッダーの影を毎回更新する。
-- ナビリンクは `preventDefault` したうえで、ヘッダーの高さを差し引いた位置へ `scrollTo` する。
+- `scroll`（passive）：トップへ戻るボタン、アクティブリンク、ヘッダーの影（`.header.scrolled`）を更新する。
+- `href="#..."` のリンクはすべて `preventDefault` したうえで、ヘッダーの高さを差し引いた位置へ `scrollTo` する。
+- フォーム送信は `mailto:` を組み立てて開くだけ。必須・形式のチェックは HTML の `required`／`type="email"` に任せる。
 
 ## 既知の技術的負債
 
 | 箇所 | 内容 | 対応案 |
 |---|---|---|
-| `style.css` レスポンシブ | 768px 以下で `.nav__menu` を隠す指定も `.nav__toggle` を表示する指定もなく、`.nav__menu.show` の定義もない。各グリッドも1カラムに落ちない | モバイル用のメディアクエリを追加する |
-| `script.js` | `animateSkillBars`／`.skill-bar__fill`（スキルバーは廃止済み）、`requestTick`／`debounce`／`throttle`（未使用）、`trackEvent`（console.log のみ）が残っている | 削除する |
-| `script.js` | `using-keyboard` クラスを付けているが、対応する CSS がない | 削除し、CSS の `:focus-visible` に任せる |
-| `script.js` フォーム | `setTimeout` で送信を模擬している | PRD U-1 の決定に従う |
-| `script.js` 通知 | スタイルを JS の `style.cssText` に直書きしており、色が水墨パレット外（#4caf50 など） | CSS クラスに移し、トークンを使う |
-| `index.html` | `<a alt="...">`（無効な属性）、ハンバーガーが `<div>`、トップへ戻るボタンにラベルがない | `<button aria-label>` にする |
+| `style.css`／`index.html` | 768px 以下のレイアウト、ナビ、ハンバーガーの `<button>` 化 | `feature/responsive` で対応 |
 | `README.md`／`FILE_STRUCTURE.md` | FILE_STRUCTURE.md が旧デザイン（コーラル配色）のまま | 本書に統合するか更新する |
 
 ## デプロイ

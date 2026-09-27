@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-27T05:19:18.184Z",
+        "reason": "README.md: 水墨画コンセプトで和紙色 #f5f1e6 を基調色と明記（プロジェクトの確定方針）"
+      }
+    ]
+  }
+}
