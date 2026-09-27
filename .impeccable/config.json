@@ -11,6 +11,15 @@
         ],
         "createdAt": "2026-09-27T05:19:18.184Z",
         "reason": "README.md: 水墨画コンセプトで和紙色 #f5f1e6 を基調色と明記（プロジェクトの確定方針）"
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-27T05:25:57.639Z",
+        "reason": "style.css INK MOTIFS: 各セクションの overflow:hidden は隅のにじみ・落款を意図的に切り取り横スクロールを防ぐためのもの（ツールチップ等の浮遊UIは無し）"
       }
     ]
   }
