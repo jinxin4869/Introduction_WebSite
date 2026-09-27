@@ -1225,3 +1225,96 @@ h1, h2, h3, h4,
         width: 180px;
     }
 }
+
+/* ===== MOBILE LAYOUT（768px以下：1カラム＋ハンバーガーメニュー） ===== */
+@media (max-width: 768px) {
+    /* --- ナビ：ハンバーガーを出し、メニューはヘッダー直下のドロワーに --- */
+    .nav__toggle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 44px;                      /* タップ領域 44px 以上 */
+        height: 44px;
+        padding: 0;
+        background: none;
+        border: none;
+    }
+    /* 開いているときは三本線を × に */
+    .nav__toggle.active .nav__toggle-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav__toggle.active .nav__toggle-line:nth-child(2) { opacity: 0; }
+    .nav__toggle.active .nav__toggle-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav__menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        height: calc(100dvh - 100%);
+        background: var(--bg-primary);
+        border-top: 1px solid rgba(28, 31, 34, 0.08);
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-8px);
+        transition: opacity var(--transition-base), transform var(--transition-base), visibility var(--transition-base);
+    }
+    .nav__menu.show {
+        visibility: visible;
+        opacity: 1;
+        transform: none;
+    }
+    .nav__list {
+        flex-direction: column;
+        gap: 0;
+        padding: var(--spacing-md) var(--container-padding);
+    }
+    .nav__link {
+        display: block;
+        padding: var(--spacing-sm) var(--spacing-xs);
+        font-size: var(--font-size-lg);
+        border-bottom: 1px solid rgba(28, 31, 34, 0.08);
+        border-radius: 0;
+    }
+
+    /* --- 全セクションを1カラムに --- */
+    .hero__content,
+    .about__content,
+    .skills__content,
+    .experience__content,
+    .contact__content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+    }
+
+    /* --- ヒーロー：固定ヘッダーの下から始め、アバターを先頭に小さく --- */
+    .hero {
+        min-height: auto;
+        padding: calc(76px + var(--spacing-xl)) 0 var(--spacing-2xl);
+    }
+    .hero__image { order: -1; }
+    .hero__image-placeholder {
+        width: 200px;
+        height: 200px;
+    }
+    .hero__subtitle { font-size: var(--font-size-xl); }
+    .hero__description { font-size: var(--font-size-base); }
+    .hero__buttons { flex-wrap: wrap; }
+    .hero__buttons .btn { flex: 1 1 auto; }
+
+    /* --- セクションの余白を詰める --- */
+    .about,
+    .skills,
+    .experience,
+    .contact {
+        padding: var(--spacing-2xl) 0;
+    }
+    .section__header { margin-bottom: var(--spacing-xl); }
+    .about__description,
+    .contact__description { font-size: var(--font-size-base); }
+    .about__info-item { align-items: flex-start; }
+
+    /* --- 長いメールアドレス等をはみ出させない --- */
+    .contact__detail-info { min-width: 0; overflow-wrap: anywhere; }
+    .contact__form { padding: var(--spacing-md); }
+    .form__input,
+    .form__textarea { padding: var(--spacing-sm); }
+}

@@ -11,17 +11,22 @@ const sections = document.querySelectorAll('section[id]');   // ID付きのセ�
 // ===== MOBILE NAVIGATION（モバイルナビゲーション） =====
 // ハンバーガーメニューの開閉機能
 function toggleMobileNav() {
-    navMenu.classList.toggle('show');           // メニューの表示/非表示切り替え
-    navToggle.classList.toggle('active');       // ハンバーガーアイコンのアニメーション
-    // メニューが開いている間はページスクロールを無効化
-    document.body.style.overflow = navMenu.classList.contains('show') ? 'hidden' : 'auto';
+    setMobileNav(!navMenu.classList.contains('show'));
 }
 
 // モバイルナビゲーションを閉じる
 function closeMobileNav() {
-    navMenu.classList.remove('show');           // メニューを非表示
-    navToggle.classList.remove('active');       // ハンバーガーアイコンを元に戻す
-    document.body.style.overflow = 'auto';      // ページスクロールを再有効化
+    setMobileNav(false);
+}
+
+// 開閉状態を見た目・スクリーンリーダー・スクロールロックに一括反映
+function setMobileNav(open) {
+    navMenu.classList.toggle('show', open);          // メニューの表示/非表示
+    navToggle.classList.toggle('active', open);      // ハンバーガー ⇔ ×
+    navToggle.setAttribute('aria-expanded', open);
+    navToggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+    // メニューが開いている間はページスクロールを無効化
+    document.body.style.overflow = open ? 'hidden' : '';
 }
 
 // ===== SMOOTH SCROLLING（スムーススクロール） =====
