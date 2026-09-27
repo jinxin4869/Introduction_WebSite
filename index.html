@@ -12,6 +12,23 @@
       name="description"
       content="陳 錦鑫（Jinxin Chen）のポートフォリオサイト。Webエンジニアとしての経歴、スキル、プロジェクトをご紹介します。"
     />
+    <!-- リンク共有時のプレビュー（OGP）。og:url / og:image は公開URLに合わせて絶対パスで記述 -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="陳 錦鑫 - ポートフォリオ" />
+    <meta
+      property="og:description"
+      content="Webエンジニア 陳 錦鑫（Jinxin Chen）の自己紹介。経歴・スキル・個人開発をご紹介します。"
+    />
+    <meta property="og:url" content="https://jinxin4869.github.io/Introduction_WebSite/" />
+    <meta
+      property="og:image"
+      content="https://jinxin4869.github.io/Introduction_WebSite/assets/images/%E3%83%91%E3%83%B3%E3%83%80.png"
+    />
+    <meta property="og:locale" content="ja_JP" />
+    <meta name="twitter:card" content="summary" />
+    <!-- ファビコン（落款の「陳」）とブラウザUIの色 -->
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#f5f1e6" />
     <!-- メインCSSファイルの読み込み -->
     <link rel="stylesheet" href="css/style.css" />
     <!-- Google Fontsの事前接続（パフォーマンス向上） -->
@@ -103,8 +120,8 @@
               </p>
               <!-- CTA（Call To Action）ボタン -->
               <div class="hero__buttons">
-                <a href="#contact" class="btn btn--primary">お問い合わせ</a>
-                <a href="#about" class="btn btn--secondary">詳しく見る</a>
+                <a href="#experience" class="btn btn--primary">経歴を見る</a>
+                <a href="#contact" class="btn btn--secondary">お問い合わせ</a>
               </div>
             </div>
             <!-- 右側：プロフィール画像エリア -->
@@ -173,17 +190,17 @@
             <div class="about__stats">
               <!-- 技術スタック -->
               <div class="stat">
-                <span class="stat__number">⚙️ 6つ</span>
+                <span class="stat__number">6つ</span>
                 <span class="stat__label">技術スタック</span>
               </div>
               <!-- GitHub活動 -->
               <div class="stat">
-                <span class="stat__number">📝 350+</span>
+                <span class="stat__number">350+</span>
                 <span class="stat__label">コントリビューション数</span>
               </div>
               <!-- 実務経験 -->
               <div class="stat">
-                <span class="stat__number">📊 2年</span>
+                <span class="stat__number">2年</span>
                 <span class="stat__label">実務経験（インフラ運用 → Web開発）</span>
               </div>
             </div>
@@ -231,7 +248,10 @@
                   <div class="timeline__date">2025年 1月- 現在</div>
                   <div class="timeline__content">
                     <h4>個人開発「Otter Bank」をリリース</h4>
-                    <a href="https://otter-bank.vercel.app/" alt="開発リンク"
+                    <a
+                      href="https://otter-bank.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       >Otter Bank</a
                     >
                   </div>
@@ -398,15 +418,19 @@
               <div class="contact__details">
                 <!-- メールアドレス -->
                 <div class="contact__detail">
-                  <span class="contact__icon">📧</span>
+                  <span class="contact__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3.5 6l8.5 7 8.5-7"/></svg>
+                  </span>
                   <div class="contact__detail-info">
                     <h4>メール</h4>
-                    <p>jinxin10244869@gmail.com</p>
+                    <p><a href="mailto:jinxin10244869@gmail.com">jinxin10244869@gmail.com</a></p>
                   </div>
                 </div>
                 <!-- 対応時間 -->
                 <div class="contact__detail">
-                  <span class="contact__icon">⏰</span>
+                  <span class="contact__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+                  </span>
                   <div class="contact__detail-info">
                     <h4>対応時間</h4>
                     <p>平日 18:00~</p>
@@ -463,8 +487,12 @@
               </div>
               <!-- 送信ボタン -->
               <button type="submit" class="btn btn--primary btn--full">
-                送信する
+                メールアプリで送信する
               </button>
+              <!-- 静的サイトのためサーバー送信はせず、入力内容を差し込んだメールを開く -->
+              <p class="form__note">
+                ボタンを押すと、入力内容が入ったメール作成画面が開きます。
+              </p>
             </form>
           </div>
         </div>
@@ -490,7 +518,9 @@
               <span class="footer__github-icon"
                 ><img
                   src="assets/images/icons8-github-50.png"
-                  alt="githubアイコン"
+                  alt="GitHub"
+                  width="25"
+                  height="25"
               /></span>
             </a>
           </div>
@@ -500,8 +530,8 @@
 
     <!-- ===== スクロールトップボタン ===== -->
     <!-- ページ下部でスクロール時に表示される「トップに戻る」ボタン -->
-    <button class="scroll-top" id="scroll-top">
-      <span class="scroll-top__arrow">↑</span>
+    <button type="button" class="scroll-top" id="scroll-top" aria-label="ページの先頭へ戻る">
+      <svg class="scroll-top__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5L12 5l6.5 6.5"/></svg>
     </button>
 
     <!-- ===== JavaScriptファイルの読み込み ===== -->

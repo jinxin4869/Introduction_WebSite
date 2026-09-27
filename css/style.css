@@ -157,7 +157,6 @@ h1, h2, h3, h4,
 /* セクションタイトル */
 .section__title {
     font-size: var(--font-size-3xl);
-    font-weight: 700;
     color: var(--text-primary);
     margin-bottom: var(--spacing-sm);
 }
@@ -185,6 +184,12 @@ h1, h2, h3, h4,
     border-bottom: 1px solid rgba(28, 31, 34, 0.08);
 }
 
+/* スクロール後：地を濃くし、紙が一枚浮いた程度の影 */
+.header.scrolled {
+    background: rgba(245, 241, 230, 0.98);
+    box-shadow: 0 2px 20px rgba(28, 31, 34, 0.08);
+}
+
 /* ナビゲーションコンテナ */
 .nav__container {
     display: flex;
@@ -198,7 +203,6 @@ h1, h2, h3, h4,
 /* ロゴリンク */
 .nav__logo-link {
     font-size: var(--font-size-xl);
-    font-weight: 700;
     color: var(--primary-color);
     text-decoration: none;
     transition: color var(--transition-base);
@@ -230,8 +234,17 @@ h1, h2, h3, h4,
 
 /* ナビゲーションリンクホバー効果 */
 .nav__link:hover {
-    color: var(--primary-color);
+    color: var(--primary-dark);
     background: var(--bg-secondary);
+}
+
+/* 現在表示中のセクションのリンク：朱の下線 */
+.nav__link.active {
+    color: var(--primary-dark);
+    text-decoration: underline;
+    text-decoration-color: var(--primary-color);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
 }
 
 /* ハンバーガーメニューボタン（デフォルトで非表示） */
@@ -341,7 +354,6 @@ h1, h2, h3, h4,
 /* メインタイトル */
 .hero__title {
     font-size: var(--font-size-5xl);
-    font-weight: 700;
     color: var(--text-primary);
     line-height: 1.2;                   /* 行間を詰める */
     margin-bottom: var(--spacing-md);
@@ -351,6 +363,11 @@ h1, h2, h3, h4,
 .hero__name {
     color: var(--primary-color);
     position: relative;
+}
+
+/* タイピング中だけ出すカーソル（朱） */
+.hero__name.is-typing {
+    border-right: 2px solid var(--primary-color);
 }
 
 /* サブタイトル（職業） */
@@ -364,7 +381,7 @@ h1, h2, h3, h4,
 /* 説明文 */
 .hero__description {
     font-size: var(--font-size-lg);
-    color: var(--text-light);
+    color: var(--text-secondary);
     line-height: 1.8;                   /* 読みやすい行間 */
     margin-bottom: var(--spacing-xl);
 }
@@ -393,13 +410,10 @@ h1, h2, h3, h4,
     align-items: center;
     justify-content: center;
     box-shadow: 0 20px 40px var(--shadow-medium);
-    animation: float 6s ease-in-out infinite; /* 浮遊アニメーション */
 }
 
 /* アバター絵文字 */
 .hero__avatar {
-    font-size: 8rem;
-    animation: bounce 2s ease-in-out infinite; /* バウンスアニメーション */
     width: 100%;
     height: 100%;
     display: flex;
@@ -416,25 +430,6 @@ h1, h2, h3, h4,
     object-fit: cover; /* 画像のアスペクト比を保ちながらコンテナにフィット */
     object-position: center; /* 画像の中央部分を表示 */
     border-radius: 50%; /* 円形にクリップ */
-    transition: transform 0.3s ease; /* ホバー時のアニメーション */
-}
-
-/* プロフィール画像のホバー効果 */
-.hero__avatar-img:hover {
-    transform: scale(1.05); /* 軽微な拡大効果 */
-}
-
-/* 浮遊アニメーション */
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-}
-
-/* バウンスアニメーション */
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-10px); }
-    60% { transform: translateY(-5px); }
 }
 
 /* ===== ABOUT SECTION（自己紹介セクション） ===== */
@@ -457,7 +452,6 @@ h1, h2, h3, h4,
     font-size: var(--font-size-2xl);
     color: var(--text-primary);
     margin-bottom: var(--spacing-lg);
-    font-weight: 600;
 }
 
 /* 自己紹介文 */
@@ -508,12 +502,6 @@ h1, h2, h3, h4,
     background: var(--bg-secondary);
     border-radius: var(--radius-xl);
     box-shadow: 0 4px 20px var(--shadow-light);
-    transition: transform var(--transition-base);
-}
-
-/* 統計カードのホバー効果 */
-.stat:hover {
-    transform: translateY(-5px);       /* 上に5px浮上 */
 }
 
 /* 統計数値（絵文字対応） */
@@ -552,7 +540,6 @@ h1, h2, h3, h4,
     font-size: var(--font-size-2xl);
     color: var(--text-primary);
     margin-bottom: var(--spacing-lg);
-    font-weight: 600;
 }
 
 /* タイムラインコンテナ */
@@ -595,7 +582,7 @@ h1, h2, h3, h4,
 /* タイムライン日付 */
 .timeline__date {
     font-size: var(--font-size-sm);
-    color: var(--primary-color);
+    color: var(--primary-dark);
     font-weight: 600;
     margin-bottom: var(--spacing-xs);
 }
@@ -605,64 +592,12 @@ h1, h2, h3, h4,
     font-size: var(--font-size-lg);
     color: var(--text-primary);
     margin-bottom: var(--spacing-xs);
-    font-weight: 600;
 }
 
 /* タイムラインコンテンツの説明 */
 .timeline__content p {
     color: var(--text-secondary);
     line-height: 1.6;
-}
-
-/* スキルバーコンテナ */
-.skill-bars {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
-}
-
-/* 個別スキルバー */
-.skill-bar {
-    background: var(--white);
-    padding: var(--spacing-lg);
-    border-radius: var(--radius-lg);
-    box-shadow: 0 4px 15px var(--shadow-light);
-}
-
-/* スキルバー情報（名前と％） */
-.skill-bar__info {
-    display: flex;
-    justify-content: space-between;    /* 左右端寄せ */
-    margin-bottom: var(--spacing-sm);
-}
-
-/* スキル名 */
-.skill-bar__name {
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
-/* スキル percentage */
-.skill-bar__percentage {
-    color: var(--primary-color);
-    font-weight: 600;
-}
-
-/* プログレスバー背景 */
-.skill-bar__progress {
-    height: 8px;
-    background: var(--bg-secondary);
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-}
-
-/* プログレスバー進捗部分 */
-.skill-bar__fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
-    border-radius: var(--radius-sm);
-    width: 0%;                         /* 初期状態は0% */
-    transition: width 2s ease-out;     /* JavaScriptでアニメーション */
 }
 
 /* ===== EXPERIENCE SECTION（経歴セクション） ===== */
@@ -684,7 +619,6 @@ h1, h2, h3, h4,
     font-size: var(--font-size-2xl);
     color: var(--text-primary);
     margin-bottom: var(--spacing-lg);
-    font-weight: 600;
 }
 
 /* 経歴タイムライン */
@@ -699,19 +633,12 @@ h1, h2, h3, h4,
     background: var(--bg-secondary);
     padding: var(--spacing-lg);
     border-radius: var(--radius-lg);
-    border-left: 4px solid var(--primary-color); /* 左に色付きボーダー */
-    transition: transform var(--transition-base);
-}
-
-/* 経歴アイテムのホバー効果 */
-.experience__item:hover {
-    transform: translateX(5px);        /* 右に5px移動 */
 }
 
 /* 期間表示 */
 .experience__period {
     font-size: var(--font-size-sm);
-    color: var(--primary-color);
+    color: var(--primary-dark);
     font-weight: 600;
     margin-bottom: var(--spacing-sm);
 }
@@ -720,7 +647,6 @@ h1, h2, h3, h4,
 .experience__title {
     font-size: var(--font-size-lg);
     color: var(--text-primary);
-    font-weight: 600;
     margin-bottom: var(--spacing-xs);
 }
 
@@ -728,7 +654,6 @@ h1, h2, h3, h4,
 .experience__company {
     color: var(--text-secondary);
     margin-bottom: var(--spacing-md);
-    font-style: italic;                /* イタリック体で区別 */
 }
 
 /* 業務内容・活動リスト */
@@ -773,7 +698,6 @@ h1, h2, h3, h4,
     font-size: var(--font-size-2xl);
     color: var(--text-primary);
     margin-bottom: var(--spacing-lg);
-    font-weight: 600;
 }
 
 /* コンタクト説明文 */
@@ -804,7 +728,7 @@ h1, h2, h3, h4,
 
 /* 連絡先アイコン */
 .contact__icon {
-    font-size: var(--font-size-2xl);
+    color: var(--text-secondary);
     width: 50px;
     height: 50px;
     display: flex;
@@ -814,17 +738,34 @@ h1, h2, h3, h4,
     border-radius: var(--radius-full);
 }
 
+.contact__icon svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
 /* 連絡先詳細情報のタイトル */
 .contact__detail-info h4 {
     font-size: var(--font-size-base);
     color: var(--text-primary);
-    font-weight: 600;
     margin-bottom: var(--spacing-xs);
 }
 
 /* 連絡先詳細情報の内容 */
 .contact__detail-info p {
     color: var(--text-secondary);
+}
+
+/* 本文中のリンク（メール・Otter Bank）：墨寄りの朱＋細い下線 */
+.contact__detail-info a,
+.timeline__content a {
+    color: var(--primary-dark);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
 }
 
 /* お問い合わせフォーム */
@@ -855,6 +796,7 @@ h1, h2, h3, h4,
     padding: var(--spacing-md);
     font-size: var(--font-size-base);
     color: var(--text-primary);
+    background: var(--bg-primary);      /* 紙白のフォーム面より一段濃い和紙色 */
     border: 2px solid var(--bg-secondary);
     border-radius: var(--radius-md);
     transition: border-color var(--transition-base);
@@ -871,6 +813,14 @@ h1, h2, h3, h4,
 .form__textarea {
     resize: vertical;                   /* 縦方向のみリサイズ可能 */
     min-height: 120px;
+}
+
+/* 送信ボタン下の注記 */
+.form__note {
+    margin-top: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    text-align: center;
 }
 
 /* ===== FOOTER（フッター） ===== */
@@ -890,7 +840,7 @@ h1, h2, h3, h4,
 
 /* コピーライトテキスト */
 .footer__text {
-    color: rgba(255, 255, 255, 0.8);  /* 少し透明な白 */
+    color: rgba(250, 247, 240, 0.8);  /* 少し透明な白 */
 }
 
 /* フッターリンクコンテナ */
@@ -901,7 +851,7 @@ h1, h2, h3, h4,
 
 /* フッターリンク */
 .footer__link {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(250, 247, 240, 0.8);
     text-decoration: none;
     transition: color var(--transition-base);
 }
@@ -922,7 +872,7 @@ h1, h2, h3, h4,
 }
 
 .footer__github:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(250, 247, 240, 0.1);
     transform: translateY(-2px);
 }
 
@@ -970,9 +920,36 @@ h1, h2, h3, h4,
 
 /* スクロールトップボタンの矢印アイコン */
 .scroll-top__arrow {
-    font-size: var(--font-size-lg);    /* フォントサイズ */
-    line-height: 1;                    /* 行間を1に設定 */
-    font-weight: bold;                 /* 太字 */
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ===== BROWSER SURFACES（選択・フォーカス・キャレット） ===== */
+::selection {
+    background: rgba(179, 64, 44, 0.18);   /* 朱を薄く */
+    color: var(--text-primary);
+}
+:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 3px;
+}
+input, textarea {
+    caret-color: var(--primary-color);
+}
+
+/* ===== REDUCED MOTION（動きを減らす設定） ===== */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
 
 /* ===== MEDIA QUERIES（レスポンシブデザイン） ===== */
@@ -1007,11 +984,6 @@ h1, h2, h3, h4,
         height: 200px;
     }
     
-    /* アバターをさらに縮小 */
-    .hero__avatar {
-        font-size: 4rem;
-    }
-    
     /* 統計カード間隔を詰める */
     .about__stats {
         gap: var(--spacing-md);
@@ -1035,7 +1007,6 @@ h1, h2, h3, h4,
 .skill-category__title {
     font-size: var(--font-size-lg);
     color: var(--text-primary);
-    font-weight: 600;
     margin-bottom: var(--spacing-md);
     position: relative;
 }
@@ -1066,7 +1037,6 @@ h1, h2, h3, h4,
     border-radius: var(--radius-xl);
     font-size: var(--font-size-sm);
     font-weight: 500;
-    transition: all var(--transition-base);
     cursor: default;
     border: 2px solid transparent;
 }
@@ -1078,11 +1048,6 @@ h1, h2, h3, h4,
     border: 2px solid rgba(28, 31, 34, 0.15);
 }
 
-.skill-tag--core:hover {
-    border-color: var(--primary-color);
-    transform: translateY(-2px);
-}
-
 /* フレームワークのスタイル */
 .skill-tag--framework {
     background: var(--white);
@@ -1091,23 +1056,11 @@ h1, h2, h3, h4,
     box-shadow: 0 2px 10px var(--shadow-light);
 }
 
-.skill-tag--framework:hover {
-    background: var(--primary-color);
-    color: var(--white);
-    transform: translateY(-2px);
-}
-
 /* ツール・その他のスタイル */
 .skill-tag--tool {
     background: var(--bg-accent);
     color: var(--text-primary);
     border: 2px solid var(--accent-color);
-}
-
-.skill-tag--tool:hover {
-    background: var(--accent-color);
-    color: var(--white);
-    transform: translateY(-2px);
 }
 
 /* レスポンシブ対応：タブレット以下 */
