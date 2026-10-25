@@ -3,6 +3,14 @@
   <head>
     <!-- 文字エンコーディングを UTF-8 に設定 -->
     <meta charset="UTF-8" />
+    <!-- 読み込み元の制限（GitHub Pages はヘッダを設定できないため meta で指定する） -->
+    <!-- sha256 は下部のインライン import map のハッシュ。import map を書き換えたら再計算する -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'sha256-olOhpqGWneJ9xkf+f7FeR2OdSpIckN16TkBHBSqh76c='; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'"
+    />
+    <!-- 外部サイトへ送る Referer をオリジンだけにする -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <!-- レスポンシブデザインのためのビューポート設定 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- ページタイトル（ブラウザタブに表示） -->
@@ -554,10 +562,14 @@
     <script src="js/script.js"></script>
 
     <!-- three.js を CDN から ES モジュールとして読み込む（バンドラー不要） -->
+    <!-- integrity：CDN 側で改ざんされたファイルは読み込まない（バージョンを上げたらハッシュも更新する） -->
     <script type="importmap">
       {
         "imports": {
           "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+        },
+        "integrity": {
+          "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js": "sha384-61S/Nu32S3E5+n+KpCOTb2eRYps6fVKm+9Gz1QBvSePFthb46f063Aa/qe/lykFZ"
         }
       }
     </script>

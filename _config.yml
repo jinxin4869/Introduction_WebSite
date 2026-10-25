@@ -1,0 +1,7 @@
+# GitHub Pages（Jekyll）の設定
+# サイトの表示に不要な開発用ドキュメントは公開サイトに含めない（GitHub 上のリポジトリでは引き続き読める）
+exclude:
+  - README.md
+  - SECURITY.md
+  - FILE_STRUCTURE.md
+  - docs/
